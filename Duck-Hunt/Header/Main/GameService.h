@@ -7,6 +7,7 @@ namespace Main
 	enum class GameState
 	{
 		BOOT,
+		MAIN_MENU,
 		GAMEPLAY,
 	};
 
@@ -19,6 +20,7 @@ namespace Main
 
 		void initialize();
 		void initializeVariables();
+		void showMainMenu();
 		void destroy();
 
 	public:
