@@ -10,7 +10,6 @@ namespace Duck
 	using namespace Time;
 	using namespace Controller;
 
-
 	DuckService::DuckService()
 	{
 		std::srand(static_cast<unsigned>(std::time(nullptr)));
@@ -117,5 +116,19 @@ namespace Duck
 		destroy();
 		spawn_timer = 0.0f;
 	}
+
+	void DuckService::clickedonBird(sf::Vector2f mouse_position)
+	{
+		for (int i = 0; i < duck_list.size(); i++)
+		{
+			if (duck_list[i]->getDuckSprite().getGlobalBounds().contains(mouse_position))
+			{
+				destroyDuck(duck_list[i]);
+			}
+		}
+
+	}
+
+
 
 }

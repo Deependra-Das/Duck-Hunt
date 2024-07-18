@@ -144,6 +144,10 @@
     <ClCompile Include="Source\Global\ServiceLocator.cpp" />
     <ClCompile Include="Source\Graphics\GraphicsService.cpp" />
     <ClCompile Include="Source\Main\GameService.cpp" />
+    <ClCompile Include="Source\Player\PlayerController.cpp" />
+    <ClCompile Include="Source\Player\PlayerModel.cpp" />
+    <ClCompile Include="Source\Player\PlayerService.cpp" />
+    <ClCompile Include="Source\Player\PlayerView.cpp" />
     <ClCompile Include="Source\Time\TimeService.cpp" />
     <ClCompile Include="Source\UI\MainMenuUI\MainMenuUIController.cpp" />
     <ClCompile Include="Source\UI\UIElement\ButtonView.cpp" />
@@ -166,6 +170,10 @@
     <ClInclude Include="Header\Global\ServiceLocator.h" />
     <ClInclude Include="Header\Graphics\GraphicsService.h" />
     <ClInclude Include="Header\Main\GameService.h" />
+    <ClInclude Include="Header\Player\PlayerController.h" />
+    <ClInclude Include="Header\Player\PlayerModel.h" />
+    <ClInclude Include="Header\Player\PlayerService.h" />
+    <ClInclude Include="Header\Player\PlayerView.h" />
     <ClInclude Include="Header\Time\TimeService.h" />
     <ClInclude Include="Header\UI\Interface\IUIController.h" />
     <ClInclude Include="Header\UI\MainMenuUI\MainMenuUIController.h" />

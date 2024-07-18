@@ -1,0 +1,104 @@
+#include "../../Header/Player/PlayerController.h"
+#include "../../Header/Player/PlayerView.h"
+#include "../../Header/Player/PlayerModel.h"
+#include "../../Header/Global/ServiceLocator.h"
+#include "../../Header/Event/EventService.h"
+#include "../../Header/Main/GameService.h"
+#include<algorithm>
+
+
+namespace Player
+{
+	using namespace Global;
+	using namespace Event;
+	using namespace Time;
+	using namespace Main;
+
+	PlayerController::PlayerController()
+	{
+		player_model = new PlayerModel();
+		player_view = new PlayerView();;
+	}
+
+	PlayerController::~PlayerController()
+	{
+		delete(player_model);
+		delete(player_view);
+	}
+
+	void PlayerController::processPlayerInput()
+	{
+		EventService* event_service = ServiceLocator::getInstance()->getEventService();
+		sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicsService()->getGameWindow();
+
+		sf::Vector2i mouse_position = sf::Vector2i(sf::Mouse::getPosition(*game_window));
+		sf::Vector2f mouseCoord { game_window->mapPixelToCoords(mouse_position) };
+
+		mouseCoord.x -= 30; mouseCoord.y -= 30;
+
+		player_model->setPlayerPosition(mouseCoord);
+
+
+		if (event_service->pressedLeftMouseButton())
+		{
+			processBulletFire(mouseCoord);
+		}
+
+	}
+
+	void PlayerController::initialize()
+	{
+		player_model->initialize();
+		player_view->initialize(this);
+	}
+
+	void PlayerController::update()
+	{
+		switch (player_model->getPlayerState())
+		{
+		case::Player::PlayerState::ALIVE:
+			processPlayerInput();
+			break;
+
+			break;
+		}
+
+		player_view->update();
+	}
+
+	void PlayerController::render()
+	{
+		player_view->render();
+	}
+
+	sf::Vector2f PlayerController::getPlayerPosition()
+	{
+		return player_model->getPlayerPosition();
+	}
+
+	void PlayerController::reset()
+	{
+		player_model->reset();
+	}
+
+	PlayerState PlayerController::getPlayerState()
+	{
+		return player_model->getPlayerState();
+	}
+
+	void PlayerController::processBulletFire(sf::Vector2f mouse_position)
+	{
+		ServiceLocator::getInstance()->getDuckService()->clickedonBird(mouse_position);
+
+	}
+
+	void PlayerController::decreasePlayerLive()
+	{
+		PlayerModel::player_lives -= 1;
+		if (PlayerModel::player_lives <= 0)
+		{
+			/*GameService::setGameState(GameState::GAME_OVER);*/
+		}
+	}
+
+}

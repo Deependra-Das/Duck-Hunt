@@ -1,5 +1,5 @@
 #pragma once
-
+#include <SFML/Graphics.hpp>
 #include <vector>
 
 namespace Duck
@@ -33,6 +33,9 @@ namespace Duck
 		void reset();
 
 		DuckController* SpawnDuck();
+
+		void clickedonBird(sf::Vector2f mouse_position);
+
 		void destroyDuck(DuckController* duck_controller);
 	};
 }
