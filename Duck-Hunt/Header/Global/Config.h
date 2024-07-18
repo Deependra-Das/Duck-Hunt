@@ -13,5 +13,6 @@ namespace Global
 		static const sf::String instructions_button_texture_path;
 		static const sf::String quit_button_texture_path;
 		static const sf::String background_texture_path;
+		static const sf::String duck_texture_path;
 	};
 }

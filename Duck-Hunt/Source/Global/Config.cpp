@@ -13,4 +13,6 @@ namespace Global
 	const sf::String Config::quit_button_texture_path = "Assets/Textures/quit_button.png";
 
 	const sf::String Config::background_texture_path = "Assets/Textures/background_texture.png";
+
+	const sf::String Config::duck_texture_path = "Assets/Textures/bird_sprite.png";
 }
