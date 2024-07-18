@@ -1,7 +1,8 @@
 #pragma once
 
 #include "../../Header/Graphics/GraphicsService.h"
-
+#include "../../Header/Event/EventService.h"
+#include "../../Header/UI/UIService.h"
 
 namespace Global
 {
@@ -13,7 +14,8 @@ namespace Global
         ~ServiceLocator();
 
         Graphics::GraphicsService* graphics_service;
-
+        Event::EventService* event_service;
+        UI::UIService* ui_service;
         void createServices();
         void clearAllServices();
 
@@ -26,7 +28,9 @@ namespace Global
         void render();
 
         Graphics::GraphicsService* getGraphicsService();
-  
+        Event::EventService* getEventService();
+        UI::UIService* getUIService();
+
         void deleteServiceLocator();
     };
 }

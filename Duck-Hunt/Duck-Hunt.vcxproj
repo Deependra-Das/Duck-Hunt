@@ -131,14 +131,35 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Source\Event\EventService.cpp" />
+    <ClCompile Include="Source\GamePlay\GameplayController.cpp" />
+    <ClCompile Include="Source\GamePlay\GameplayService.cpp" />
+    <ClCompile Include="Source\GamePlay\GameplayView.cpp" />
+    <ClCompile Include="Source\Global\Config.cpp" />
     <ClCompile Include="Source\Global\ServiceLocator.cpp" />
     <ClCompile Include="Source\Graphics\GraphicsService.cpp" />
     <ClCompile Include="Source\Main\GameService.cpp" />
+    <ClCompile Include="Source\UI\MainMenuUI\MainMenuUIController.cpp" />
+    <ClCompile Include="Source\UI\UIElement\ButtonView.cpp" />
+    <ClCompile Include="Source\UI\UIElement\ImageView.cpp" />
+    <ClCompile Include="Source\UI\UIElement\UIView.cpp" />
+    <ClCompile Include="Source\UI\UIService.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header\Event\EventService.h" />
+    <ClInclude Include="Header\GamePlay\GameplayController.h" />
+    <ClInclude Include="Header\GamePlay\GameplayService.h" />
+    <ClInclude Include="Header\GamePlay\GameplayView.h" />
+    <ClInclude Include="Header\Global\Config.h" />
     <ClInclude Include="Header\Global\ServiceLocator.h" />
     <ClInclude Include="Header\Graphics\GraphicsService.h" />
     <ClInclude Include="Header\Main\GameService.h" />
+    <ClInclude Include="Header\UI\Interface\IUIController.h" />
+    <ClInclude Include="Header\UI\MainMenuUI\MainMenuUIController.h" />
+    <ClInclude Include="Header\UI\UIElement\ButtonView.h" />
+    <ClInclude Include="Header\UI\UIElement\ImageView.h" />
+    <ClInclude Include="Header\UI\UIElement\UIView.h" />
+    <ClInclude Include="Header\UI\UIService.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
