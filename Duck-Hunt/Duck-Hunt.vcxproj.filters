@@ -48,13 +48,31 @@
     <ClCompile Include="Source\UI\UIService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GamePlay\GameplayController.cpp">
+    <ClCompile Include="Source\Gameplay\GameplayController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GamePlay\GameplayService.cpp">
+    <ClCompile Include="Source\Gameplay\GameplayService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GamePlay\GameplayView.cpp">
+    <ClCompile Include="Source\Gameplay\GameplayView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Duck\DuckController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Duck\DuckService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Duck\DuckModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Duck\DuckView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Time\TimeService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Duck\Controllers\RedDuckController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -92,13 +110,34 @@
     <ClInclude Include="Header\Global\Config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header\GamePlay\GameplayController.h">
+    <ClInclude Include="Header\Gameplay\GameplayController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header\GamePlay\GameplayService.h">
+    <ClInclude Include="Header\Gameplay\GameplayService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header\GamePlay\GameplayView.h">
+    <ClInclude Include="Header\Gameplay\GameplayView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Duck\DuckController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Duck\DuckConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Duck\DuckModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Duck\DuckView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Duck\DuckService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Time\TimeService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Duck\Controllers\RedDuckController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
