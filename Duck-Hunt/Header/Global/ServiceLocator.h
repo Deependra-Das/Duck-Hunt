@@ -6,6 +6,7 @@
 #include "../../Header/Gameplay/GameplayService.h"
 #include "../../Header/Time/TimeService.h"
 #include "../../Header/Duck/DuckService.h"
+#include "../../Header/Player/PlayerService.h"
 
 namespace Global
 {
@@ -22,6 +23,8 @@ namespace Global
         Gameplay::GameplayService* gameplay_service;
         Time::TimeService* time_service;
         Duck::DuckService* duck_service;
+        Player::PlayerService* player_service;
+
         void createServices();
         void clearAllServices();
 
@@ -39,6 +42,7 @@ namespace Global
         Gameplay::GameplayService* getGameplayService();
         Time::TimeService* getTimeService();
         Duck::DuckService* getDuckService();
+        Player::PlayerService* getPlayerService();
 
         void deleteServiceLocator();
     };

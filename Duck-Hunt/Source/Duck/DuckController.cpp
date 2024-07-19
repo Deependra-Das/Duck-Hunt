@@ -76,6 +76,11 @@ namespace Duck
 		return duck_model->getDuckState();
 	}
 
+	const sf::Sprite& DuckController::getDuckSprite()
+	{
+		return duck_view->getDuckSprite();
+	}
+
 	void DuckController::destroy()
 	{
 		ServiceLocator::getInstance()->getDuckService()->destroyDuck(this);
