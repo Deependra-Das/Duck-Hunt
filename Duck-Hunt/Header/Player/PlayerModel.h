@@ -19,7 +19,8 @@ namespace Player
         const int max_player_lives = 3;
         static int player_lives;
         static int ducks_shot;
-
+        const int max_ammo_count = 5;
+        static int current_ammo_count;
         sf::Vector2f player_position;
         PlayerState player_state;
 
@@ -38,8 +39,11 @@ namespace Player
         PlayerState getPlayerState();
         void setPlayerState(PlayerState state);
 
-        int getPlayerScore();
-        void setPlayerScore(int score);
+        int getPlayerLives();
+        void setPlayerLives(int lives);
+
+        int getPlayerAmmo();
+        void setPlayerAmmo(int ammo);
 
     };
 }

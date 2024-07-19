@@ -34,7 +34,7 @@ namespace Duck
 
 		DuckController* SpawnDuck();
 
-		void clickedonBird(sf::Vector2f mouse_position);
+		int clickedonBird(sf::Vector2f mouse_position);
 
 		void destroyDuck(DuckController* duck_controller);
 	};
