@@ -37,9 +37,9 @@ namespace Player
 		player_controller->reset();
 	}
 
-	void PlayerService::increaseEnemiesKilled(int val)
+	void PlayerService::increaseDucksShot(int val)
 	{
-		player_controller->increaseEnemiesKilled(val);
+		player_controller->increaseDucksShot(val);
 	}
 
 	void PlayerService::decreasePlayerHealth()
@@ -47,9 +47,4 @@ namespace Player
 		player_controller->decreasePlayerLive();
 	}
 
-	int PlayerService::getPlayerHealth()
-	{
-		return player_controller->getPlayerHealth();
-
-	}
 }

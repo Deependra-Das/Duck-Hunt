@@ -4,6 +4,7 @@
 #include "../../Header/Global/ServiceLocator.h"
 #include "../../Header/Event/EventService.h"
 #include "../../Header/Main/GameService.h"
+#include "../../header/Global/Config.h"
 #include<algorithm>
 
 
@@ -88,34 +89,28 @@ namespace Player
 
 	void PlayerController::processBulletFire(sf::Vector2f mouse_position)
 	{
-	/*	if (player_model->getPlayerAmmo() > 0)
-		{*/
+		/*if (PlayerModel::ammo_count > 0)
+		{*/	
 			int duck_shot = ServiceLocator::getInstance()->getDuckService()->clickedonBird(mouse_position);
-			//decreasePlayerAmmo();
-	/*	}*/	
+		/*	decreasePlayerAmmo();
+		}*/	
 	}
 
 	void PlayerController::decreasePlayerLive()
 	{
-		if (player_model->getPlayerLives() > 0)
+		if (PlayerModel::player_lives > 0)
 		{
-			player_model->setPlayerLives(-1);
+			PlayerModel::player_lives -= 1;
 		}
 	}
 
 	void PlayerController::decreasePlayerAmmo()
 	{
 	
-		if (player_model->getPlayerAmmo() > 0)
+		if (PlayerModel::ammo_count > 0)
 		{
-			player_model->setPlayerAmmo(-1);
+			PlayerModel::ammo_count -= 1;
 		}
-	}
-
-	int PlayerController::getPlayerHealth()
-	{
-		return player_model->getPlayerLives();
-
 	}
 
 }

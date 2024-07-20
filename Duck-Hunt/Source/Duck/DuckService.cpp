@@ -116,6 +116,7 @@ namespace Duck
 				duck_shot++;
 			}
 		}
+		ServiceLocator::getInstance()->getPlayerService()->increaseDucksShot(duck_shot);
 		ServiceLocator::getInstance()->getWaveService()->updateDucksShot(duck_shot);
 		return duck_shot;
 

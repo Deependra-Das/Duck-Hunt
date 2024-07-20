@@ -28,4 +28,10 @@ namespace Gameplay
 	{
 		gameplay_view->render();
 	}
+
+	void GameplayController::changeBackgroundColor(sf::String texture_path)
+	{
+		gameplay_view->changeBackgroundColor(texture_path);
+
+	}
 }

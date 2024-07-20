@@ -19,5 +19,7 @@ namespace Wave
 		void update();
 		void render();
 		void destroy();
+
+		void setPlayerAmmoCount();
 	};
 }

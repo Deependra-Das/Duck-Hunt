@@ -18,8 +18,7 @@ namespace Player
 		void render();
 
 		void reset();
-		void increaseEnemiesKilled(int val);
+		void increaseDucksShot(int val);
 		void decreasePlayerHealth();
-		int getPlayerHealth();
 	};
 }

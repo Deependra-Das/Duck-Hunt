@@ -46,12 +46,18 @@ namespace Gameplay
 
 	sf::String GameplayView::getBackgroundTexturePath()
 	{
-		return Config::background_texture_path;
+		return Config::background_blue_texture_path;
 	}
 
 	void GameplayView::destroy()
 	{
 		delete(background_image);
+	}
+
+	void GameplayView::changeBackgroundColor(sf::String texture_path)
+	{
+		background_image->setTexture(texture_path);
+		
 	}
 
 }

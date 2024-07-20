@@ -1,10 +1,13 @@
 #include "../../Header/Player/PlayerModel.h"
+#include "../../Header/Global/ServiceLocator.h"
 
 namespace Player
 {
+	using namespace Global;
+
 	int PlayerModel::player_lives;
 	int PlayerModel::ducks_shot;
-	int PlayerModel::current_ammo_count;
+	int PlayerModel::ammo_count;
 
 	PlayerModel::PlayerModel()
 	{
@@ -24,8 +27,8 @@ namespace Player
 	void PlayerModel::reset()
 	{
 		player_state = PlayerState::ALIVE;
+		setMaxAmmo();
 		player_lives = max_player_lives;
-		current_ammo_count = max_ammo_count;
 		ducks_shot = 0;
 	}
 
@@ -49,24 +52,9 @@ namespace Player
 		player_state = state;
 	}
 
-	int PlayerModel::getPlayerLives()
+	void PlayerModel::setMaxAmmo()
 	{
-		return player_lives;
-	}
-
-	void PlayerModel::setPlayerLives(int lives)
-	{
-		player_lives += lives;
-	}
-
-	int PlayerModel::getPlayerAmmo()
-	{
-		return current_ammo_count;
-	}
-
-	void PlayerModel::setPlayerAmmo(int ammo)
-	{
-		current_ammo_count += ammo;
+		ammo_count=ServiceLocator::getInstance()->getWaveService()->getTotalDuckCount();
 	}
 
 }
