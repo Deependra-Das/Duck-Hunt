@@ -88,11 +88,11 @@ namespace Player
 
 	void PlayerController::processBulletFire(sf::Vector2f mouse_position)
 	{
-		if (player_model->getPlayerAmmo() > 0)
-		{
+	/*	if (player_model->getPlayerAmmo() > 0)
+		{*/
 			int duck_shot = ServiceLocator::getInstance()->getDuckService()->clickedonBird(mouse_position);
-			decreasePlayerAmmo();
-		}	
+			//decreasePlayerAmmo();
+	/*	}*/	
 	}
 
 	void PlayerController::decreasePlayerLive()
@@ -110,6 +110,12 @@ namespace Player
 		{
 			player_model->setPlayerAmmo(-1);
 		}
+	}
+
+	int PlayerController::getPlayerHealth()
+	{
+		return player_model->getPlayerLives();
+
 	}
 
 }

@@ -19,5 +19,7 @@ namespace Player
 
 		void reset();
 		void increaseEnemiesKilled(int val);
+		void decreasePlayerHealth();
+		int getPlayerHealth();
 	};
 }

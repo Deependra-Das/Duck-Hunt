@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -154,6 +154,8 @@
     <ClCompile Include="Source\UI\UIElement\ImageView.cpp" />
     <ClCompile Include="Source\UI\UIElement\UIView.cpp" />
     <ClCompile Include="Source\UI\UIService.cpp" />
+    <ClCompile Include="Source\WaveSystem\WaveService.cpp" />
+    <ClCompile Include="Source\WaveSystem\WaveSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Duck\Controllers\RedDuckController.h" />
@@ -181,6 +183,9 @@
     <ClInclude Include="Header\UI\UIElement\ImageView.h" />
     <ClInclude Include="Header\UI\UIElement\UIView.h" />
     <ClInclude Include="Header\UI\UIService.h" />
+    <ClInclude Include="Header\WaveSystem\WaveService.h" />
+    <ClInclude Include="Header\WaveSystem\WaveSystem.h" />
+    <ClInclude Include="Header\WaveSystem\WaveSystemConfig.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

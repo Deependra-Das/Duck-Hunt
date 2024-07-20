@@ -22,14 +22,11 @@ namespace Duck
 
 	void DuckService::initialize()
 	{
-		spawn_timer = spawn_interval;
+
 	}
 
 	void DuckService::update()
 	{
-		updateSpawnTimer();
-		processDuckSpawn();
-
 		for (int i = 0; i < duck_list.size(); i++)
 		{
 			duck_list[i]->update();
@@ -52,15 +49,6 @@ namespace Duck
 
 		duck_list.push_back(Duck_controller);
 		return Duck_controller;
-	}
-
-	void DuckService::processDuckSpawn()
-	{
-		if (spawn_timer >= spawn_interval)
-		{
-			SpawnDuck();
-			spawn_timer = 0.0f;
-		}
 	}
 
 	void DuckService::updateSpawnTimer()
@@ -128,6 +116,7 @@ namespace Duck
 				duck_shot++;
 			}
 		}
+		ServiceLocator::getInstance()->getWaveService()->updateDucksShot(duck_shot);
 		return duck_shot;
 
 	}

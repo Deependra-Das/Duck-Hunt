@@ -7,6 +7,7 @@
 #include "../../Header/Time/TimeService.h"
 #include "../../Header/Duck/DuckService.h"
 #include "../../Header/Player/PlayerService.h"
+#include "../../Header/WaveSystem/WaveService.h"
 
 namespace Global
 {
@@ -24,6 +25,7 @@ namespace Global
         Time::TimeService* time_service;
         Duck::DuckService* duck_service;
         Player::PlayerService* player_service;
+        Wave::WaveService* wave_service;
 
         void createServices();
         void clearAllServices();
@@ -43,6 +45,7 @@ namespace Global
         Time::TimeService* getTimeService();
         Duck::DuckService* getDuckService();
         Player::PlayerService* getPlayerService();
+        Wave::WaveService* getWaveService();
 
         void deleteServiceLocator();
     };
