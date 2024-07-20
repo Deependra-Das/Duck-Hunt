@@ -42,4 +42,14 @@ namespace Player
 		player_controller->increaseEnemiesKilled(val);
 	}
 
+	void PlayerService::decreasePlayerHealth()
+	{
+		player_controller->decreasePlayerLive();
+	}
+
+	int PlayerService::getPlayerHealth()
+	{
+		return player_controller->getPlayerHealth();
+
+	}
 }
