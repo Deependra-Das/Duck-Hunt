@@ -19,17 +19,17 @@ namespace UI
 
             const int font_size = 24;
             const int header_font_size = 56;
-            const float score_text_y_position = 5.f;
+            const float score_text_y_position = 1000.f;
             const float score_text_x_position = 880.f;
 
             const float level_text_y_position = 500.f;
             const float level_text_x_position = 880.f;
 
-            const float player_lives_y_offset = 8.f;
+            const float player_lives_y_offset = 1000.f;
             const float player_lives_x_offset = 1850.f;
             const float player_lives_spacing = 40.f;
 
-            const float player_ammo_y_offset = 8.f;
+            const float player_ammo_y_offset = 1000.f;
             const float player_ammo_x_offset = 10.f;
             const float player_ammo_spacing = 40.f;
 

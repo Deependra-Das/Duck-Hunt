@@ -40,8 +40,11 @@ namespace Wave
 
 		for (WaveSystem* wave_system : wave_system_list)
 			wave_system->update();
+		if (start_new_wave && clock.getElapsedTime() >= start_delay)
+		{
+			spawnWaveSystem(current_wave_type);
+		}
 
-		processNextWave();
 		destroyFlaggedWaveSystem();
 	}
 
@@ -67,45 +70,42 @@ namespace Wave
 		wave_system_list.erase(std::remove(wave_system_list.begin(), wave_system_list.end(), Wave_system), wave_system_list.end());
 
 		start_new_wave = true;
-		updateCurrentWave();
-		clock.restart();
-	}
-
-	void WaveService::updateCurrentWave()
-	{
-		if (ducks_shot_in_current_wave < getWaveSystemConfig(current_wave_type).birds_count)
-		{
-			ServiceLocator::getInstance()->getGameplayService()->changeBackgroundColor(Config::background_red_texture_path);
-		}
-		else 
-		{
-			current_wave_type = static_cast<WaveType>(static_cast<int>(current_wave_type) + 1);
-			activateLevelHeader();
-			level_clock.restart();
-		}
+		processNextWave();
+	
 	}
 
 
 	void WaveService::processNextWave()
 	{
-		if (start_new_wave && clock.getElapsedTime() >= start_delay)
+		if (PlayerModel::player_lives > 1)
 		{
-			int playerHealth = PlayerModel::player_lives;
-
-			if (playerHealth > 0)
+			if (ducks_shot_in_current_wave < getWaveSystemConfig(current_wave_type).birds_count)
+			{					
+				ServiceLocator::getInstance()->getGameplayService()->changeBackgroundColor(Config::background_red_texture_path);
+				ServiceLocator::getInstance()->getPlayerService()->decreasePlayerHealth();
+				ducks_shot_in_current_wave = 0;
+			}
+			else
 			{
-				if (ducks_shot_in_current_wave < getWaveSystemConfig(current_wave_type).birds_count)
-				{					
-					ServiceLocator::getInstance()->getPlayerService()->decreasePlayerHealth();
-					ducks_shot_in_current_wave = 0;
-					spawnWaveSystem(current_wave_type);
-				}
-				else
+				if (static_cast<int>(current_wave_type) < 2)
 				{
 					ducks_shot_in_current_wave = 0;
-					spawnWaveSystem(current_wave_type);
+					current_wave_type = static_cast<WaveType>(static_cast<int>(current_wave_type) + 1);
+					activateLevelHeader();
 				}
+				else 
+				{
+					start_new_wave = false;
+
+				}
+				
 			}
+			clock.restart();
+		}
+		else 
+		{
+			ServiceLocator::getInstance()->getPlayerService()->decreasePlayerHealth();
+			start_new_wave = false;
 		}
 		
 	}
