@@ -4,6 +4,8 @@
 #include "../../Header/Graphics/GraphicsService.h"
 #include "../../Header/Global/Config.h"
 #include "../../Header/Event/EventService.h"
+#include "../../Header/Sound/SoundService.h"
+using namespace Sound;
 
 namespace UI
 {
@@ -79,9 +81,9 @@ namespace UI
 
         void MainMenuUIController::playButtonCallback()
         {
-        
+            ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
             GameService::setGameState(GameState::GAMEPLAY);
-       
+            ServiceLocator::getInstance()->getSoundService()->playBackgroundMusic();
         }
 
         void MainMenuUIController::instructionsButtonCallback()
@@ -91,6 +93,7 @@ namespace UI
 
         void MainMenuUIController::quitButtonCallback()
         {
+            ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
             ServiceLocator::getInstance()->getGraphicsService()->getGameWindow()->close();
         }
 

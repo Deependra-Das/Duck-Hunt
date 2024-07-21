@@ -5,6 +5,7 @@
 #include "../../Header/Event/EventService.h"
 #include "../../Header/Main/GameService.h"
 #include "../../header/Global/Config.h"
+#include "../../Header/Sound/SoundService.h"
 #include<algorithm>
 
 
@@ -14,6 +15,7 @@ namespace Player
 	using namespace Event;
 	using namespace Time;
 	using namespace Main;
+	using namespace Sound;
 
 	PlayerController::PlayerController()
 	{
@@ -93,7 +95,7 @@ namespace Player
 		{*/	
 			int score = ServiceLocator::getInstance()->getDuckService()->clickedonBird(mouse_position);
 			PlayerModel::player_score += score;
-
+			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BULLET_FIRE);
 		/*	decreasePlayerAmmo();
 		}*/	
 	}

@@ -8,6 +8,7 @@
 #include "../../Header/Duck/DuckService.h"
 #include "../../Header/Player/PlayerService.h"
 #include "../../Header/WaveSystem/WaveService.h"
+#include "../../Header/Sound/SoundService.h"
 
 namespace Global
 {
@@ -26,6 +27,7 @@ namespace Global
         Duck::DuckService* duck_service;
         Player::PlayerService* player_service;
         Wave::WaveService* wave_service;
+        Sound::SoundService* sound_service;
 
         void createServices();
         void clearAllServices();
@@ -46,6 +48,7 @@ namespace Global
         Duck::DuckService* getDuckService();
         Player::PlayerService* getPlayerService();
         Wave::WaveService* getWaveService();
+        Sound::SoundService* getSoundService();
 
         void deleteServiceLocator();
     };
