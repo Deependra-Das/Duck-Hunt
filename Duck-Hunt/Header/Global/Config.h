@@ -15,6 +15,7 @@ namespace Global
 		static const sf::String background_blue_texture_path;
 		static const sf::String background_white_texture_path;
 		static const sf::String background_red_texture_path;
+		static const sf::String game_over_texture_path;
 		static const sf::String foreground_texture_path;
 		static const sf::String red_duck_texture_path;
 		static const sf::String black_duck_texture_path;

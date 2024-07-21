@@ -9,6 +9,7 @@ namespace Main
 		BOOT,
 		MAIN_MENU,
 		GAMEPLAY,
+		GAMEOVER,
 	};
 
 	class GameService

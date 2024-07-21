@@ -3,6 +3,7 @@
 #include "../../Header/UI/MainMenuUI/MainMenuUIController.h"
 #include "../../Header/UI/Interface/IUIController.h"
 #include "../../Header/UI/GameplayUI/GameplayUIController.h"
+#include "../../Header/UI/GameOverUI/GameOverUIController.h"
 
 namespace UI
 {
@@ -11,6 +12,7 @@ namespace UI
 	private:
 		MainMenuUI::MainMenuUIController* main_menu_controller;
 		GameplayUI::GameplayUIController* gameplay_ui_controller;
+		GameOverUI::GameOverUIController* game_over_ui_controller;
 
 		void createControllers();
 		void initializeControllers();

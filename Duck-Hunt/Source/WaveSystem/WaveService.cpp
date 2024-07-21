@@ -3,11 +3,13 @@
 #include "../../header/Global/Config.h"
 #include "../../Header/Player/PlayerModel.h"
 #include "../../Header/UI/GameplayUI/GameplayUIController.h"
+#include "../../Header/Main/GameService.h"
 
 namespace Wave
 {
 	using namespace Global;
 	using namespace Player;
+	using namespace Main;
 
 	int WaveService::ducks_shot_in_current_wave;
 	WaveType WaveService::current_wave_type;
@@ -96,7 +98,7 @@ namespace Wave
 				else 
 				{
 					start_new_wave = false;
-
+					GameService::setGameState(GameState::GAMEOVER);
 				}
 				
 			}
@@ -106,6 +108,7 @@ namespace Wave
 		{
 			ServiceLocator::getInstance()->getPlayerService()->decreasePlayerHealth();
 			start_new_wave = false;
+			GameService::setGameState(GameState::GAMEOVER);
 		}
 		
 	}

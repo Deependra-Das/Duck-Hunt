@@ -18,6 +18,8 @@ namespace Global
 
 	const sf::String Config::background_red_texture_path = "Assets/Textures/background_red_texture.png";
 
+	const sf::String Config::game_over_texture_path = "Assets/Textures/game_over_texture.png";
+
 	const sf::String Config::foreground_texture_path = "Assets/Textures/foreground_texture.png";
 
 	const sf::String Config::red_duck_texture_path = "Assets/Textures/red_bird_sprite.png";
