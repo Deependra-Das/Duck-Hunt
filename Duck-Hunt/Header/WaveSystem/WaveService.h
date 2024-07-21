@@ -22,7 +22,9 @@ namespace Wave
 		static WaveType current_wave_type;
 		bool start_new_wave;
 		sf::Clock clock;
+		sf::Clock level_clock;
 		sf::Time start_delay;
+		sf::Time level_delay;
 		WaveSystemConfig getWaveSystemConfig(WaveType wave_type);
 		void destroyFlaggedWaveSystem();
 		void destroy();
@@ -39,8 +41,12 @@ namespace Wave
 
 		void spawnWaveSystem(WaveType wave_type);
 		void destroyWaveSystem(WaveSystem* wave_system);
-
+		void updateCurrentWave();
 		void updateDucksShot(int shot);
 		void processNextWave();
+		int getTotalDuckCount();
+		int getLevelNumber();
+		void activateLevelHeader();
+		void deactivateLevelHeader();
 	};
 }

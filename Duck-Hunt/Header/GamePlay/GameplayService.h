@@ -19,5 +19,6 @@ namespace Gameplay
 
 		void restart();
 
+		void changeBackgroundColor(sf::String texture_path);
 	};
 }

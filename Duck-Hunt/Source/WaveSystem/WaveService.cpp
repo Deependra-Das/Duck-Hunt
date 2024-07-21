@@ -1,8 +1,13 @@
 #include "../../Header/WaveSystem/WaveService.h"
 #include "../../Header/Global/ServiceLocator.h"
+#include "../../header/Global/Config.h"
+#include "../../Header/Player/PlayerModel.h"
+#include "../../Header/UI/GameplayUI/GameplayUIController.h"
+
 namespace Wave
 {
 	using namespace Global;
+	using namespace Player;
 
 	int WaveService::ducks_shot_in_current_wave;
 	WaveType WaveService::current_wave_type;
@@ -19,18 +24,27 @@ namespace Wave
 	void WaveService::initialize() 
 	{ 
 		ducks_shot_in_current_wave = 0;
-		start_delay = sf::seconds(3);
+		start_delay = sf::seconds(5);
+		level_delay = sf::seconds(0.5);
 		start_new_wave = true;
+		activateLevelHeader();
 		current_wave_type = WaveType::EASY;
-		spawnWaveSystem(current_wave_type);
-		
 	}
 
 	void WaveService::update()
 	{
+		if (level_clock.getElapsedTime() >= level_delay && start_new_wave==false)
+		{
+			deactivateLevelHeader();
+		}
+
 		for (WaveSystem* wave_system : wave_system_list)
 			wave_system->update();
-		processNextWave();
+		if (start_new_wave && clock.getElapsedTime() >= start_delay)
+		{
+			spawnWaveSystem(current_wave_type);
+		}
+
 		destroyFlaggedWaveSystem();
 	}
 
@@ -42,6 +56,8 @@ namespace Wave
 
 	void WaveService::spawnWaveSystem(WaveType Wave_type)
 	{
+		level_clock.restart();
+		ServiceLocator::getInstance()->getGameplayService()->changeBackgroundColor(Config::background_blue_texture_path);
 		WaveSystem* wave_system = new WaveSystem(getWaveSystemConfig(Wave_type));
 		wave_system->initialize();
 		wave_system_list.push_back(wave_system);
@@ -52,31 +68,44 @@ namespace Wave
 	{
 		flagged_wave_system_list.push_back(Wave_system);
 		wave_system_list.erase(std::remove(wave_system_list.begin(), wave_system_list.end(), Wave_system), wave_system_list.end());
+
 		start_new_wave = true;
-		clock.restart();
+		processNextWave();
+	
 	}
+
 
 	void WaveService::processNextWave()
 	{
-		if (start_new_wave && clock.getElapsedTime() >= start_delay)
+		if (PlayerModel::player_lives > 1)
 		{
-			ServiceLocator::getInstance()->getPlayerService()->decreasePlayerHealth();
-			int playerHealth = ServiceLocator::getInstance()->getPlayerService()->getPlayerHealth();
-
-			if (playerHealth > 0)
+			if (ducks_shot_in_current_wave < getWaveSystemConfig(current_wave_type).birds_count)
+			{					
+				ServiceLocator::getInstance()->getGameplayService()->changeBackgroundColor(Config::background_red_texture_path);
+				ServiceLocator::getInstance()->getPlayerService()->decreasePlayerHealth();
+				ducks_shot_in_current_wave = 0;
+			}
+			else
 			{
-				if (ducks_shot_in_current_wave < getWaveSystemConfig(current_wave_type).birds_count)
-				{
-					ducks_shot_in_current_wave = 0;
-					spawnWaveSystem(current_wave_type);
-				}
-				else
+				if (static_cast<int>(current_wave_type) < 2)
 				{
 					ducks_shot_in_current_wave = 0;
 					current_wave_type = static_cast<WaveType>(static_cast<int>(current_wave_type) + 1);
-					spawnWaveSystem(current_wave_type);
+					activateLevelHeader();
 				}
+				else 
+				{
+					start_new_wave = false;
+
+				}
+				
 			}
+			clock.restart();
+		}
+		else 
+		{
+			ServiceLocator::getInstance()->getPlayerService()->decreasePlayerHealth();
+			start_new_wave = false;
 		}
 		
 	}
@@ -124,5 +153,24 @@ namespace Wave
 		WaveService::ducks_shot_in_current_wave += shot;
 	}
 
+	int WaveService::getTotalDuckCount()
+	{
+		return getWaveSystemConfig(current_wave_type).birds_count;
+	}
+
+	int WaveService::getLevelNumber()
+	{
+		return getWaveSystemConfig(current_wave_type).round_number;
+	}
+
+	void WaveService::activateLevelHeader()
+	{
+		UI::GameplayUI::GameplayUIController::level_header_active = true;
+	}
+
+	void WaveService::deactivateLevelHeader()
+	{
+		UI::GameplayUI::GameplayUIController::level_header_active = false;
+	}
 
 }

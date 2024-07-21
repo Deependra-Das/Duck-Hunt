@@ -149,9 +149,11 @@
     <ClCompile Include="Source\Player\PlayerService.cpp" />
     <ClCompile Include="Source\Player\PlayerView.cpp" />
     <ClCompile Include="Source\Time\TimeService.cpp" />
+    <ClCompile Include="Source\UI\GameplayUI\GameplayUIController.cpp" />
     <ClCompile Include="Source\UI\MainMenuUI\MainMenuUIController.cpp" />
     <ClCompile Include="Source\UI\UIElement\ButtonView.cpp" />
     <ClCompile Include="Source\UI\UIElement\ImageView.cpp" />
+    <ClCompile Include="Source\UI\UIElement\TextView.cpp" />
     <ClCompile Include="Source\UI\UIElement\UIView.cpp" />
     <ClCompile Include="Source\UI\UIService.cpp" />
     <ClCompile Include="Source\WaveSystem\WaveService.cpp" />
@@ -177,10 +179,12 @@
     <ClInclude Include="Header\Player\PlayerService.h" />
     <ClInclude Include="Header\Player\PlayerView.h" />
     <ClInclude Include="Header\Time\TimeService.h" />
+    <ClInclude Include="Header\UI\GameplayUI\GameplayUIController.h" />
     <ClInclude Include="Header\UI\Interface\IUIController.h" />
     <ClInclude Include="Header\UI\MainMenuUI\MainMenuUIController.h" />
     <ClInclude Include="Header\UI\UIElement\ButtonView.h" />
     <ClInclude Include="Header\UI\UIElement\ImageView.h" />
+    <ClInclude Include="Header\UI\UIElement\TextView.h" />
     <ClInclude Include="Header\UI\UIElement\UIView.h" />
     <ClInclude Include="Header\UI\UIService.h" />
     <ClInclude Include="Header\WaveSystem\WaveService.h" />

@@ -93,6 +93,12 @@
     <ClCompile Include="Source\WaveSystem\WaveService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\UI\UIElement\TextView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\GameplayUI\GameplayUIController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Global\ServiceLocator.h">
@@ -177,6 +183,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header\WaveSystem\WaveSystemConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\UI\UIElement\TextView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\UI\GameplayUI\GameplayUIController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

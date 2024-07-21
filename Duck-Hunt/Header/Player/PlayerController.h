@@ -43,8 +43,7 @@ namespace Player
 
 		void decreasePlayerLive();
 		void decreasePlayerAmmo();
-		inline void increaseEnemiesKilled(int val) { PlayerModel::ducks_shot += val; }
+		inline void increaseDucksShot(int val) { PlayerModel::ducks_shot += val; }
 
-		int getPlayerHealth();
 	};
 }

@@ -39,4 +39,9 @@ namespace Gameplay
 	{
 	}
 
+	void GameplayService::changeBackgroundColor(sf::String texture_path)
+	{
+		gameplay_Controller->changeBackgroundColor(texture_path);
+	}
+
 }
