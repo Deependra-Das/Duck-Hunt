@@ -87,7 +87,7 @@ namespace UI
 
         void GameplayUIController::updateScoreText()
         {
-            sf::String score_string = "SCORE  :  " + std::to_string(PlayerModel::ducks_shot);
+            sf::String score_string = "SCORE  :  " + std::to_string(PlayerModel::player_score);
             score_text->setText(score_string);
         }
 

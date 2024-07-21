@@ -3,12 +3,14 @@
 #include "../../Header/Global/ServiceLocator.h"
 #include "../../Header/WaveSystem/WaveService.h"
 #include "../../Header/Player/PlayerModel.h"
+#include "../../Header/Duck/DuckConfig.h"
 
 namespace Wave
 {
 	using namespace Global;
 	using namespace UI::UIElement;
 	using namespace Player;
+	using namespace Duck;
 
 	WaveSystem::WaveSystem(WaveSystemConfig config)
 	{
@@ -25,9 +27,14 @@ namespace Wave
 	{
 		setPlayerAmmoCount();
 
-		for (int count = 0; count < wave_system_config.birds_count; count++)
+		for (int count = 0; count < wave_system_config.black_birds_count; count++)
 		{
-			ServiceLocator::getInstance()->getDuckService()->SpawnDuck();
+			ServiceLocator::getInstance()->getDuckService()->SpawnDuck(DuckType::BLACK);
+		}
+
+		for (int count = 0; count < wave_system_config.red_birds_count; count++)
+		{
+			ServiceLocator::getInstance()->getDuckService()->SpawnDuck(DuckType::RED);
 		}
 		
 	}
@@ -54,7 +61,7 @@ namespace Wave
 
 	void WaveSystem::setPlayerAmmoCount()
 	{
-		PlayerModel::ammo_count = wave_system_config.birds_count;
+		PlayerModel::ammo_count = wave_system_config.total_birds_count;
 	}
 
 }

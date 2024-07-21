@@ -1,4 +1,4 @@
-#include "../../Header/Duck/Controllers/RedDuckController.h"
+#include "../../Header/Duck/Controllers/BlackDuckController.h"
 #include "../../Header/Duck/DuckModel.h"
 #include "../../Header/Duck/DuckConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
@@ -9,22 +9,22 @@ namespace Duck
 
 	namespace Controller
 	{
-		RedDuckController::RedDuckController(DuckType type) : DuckController(type) { }
+		BlackDuckController::BlackDuckController(DuckType type) : DuckController(type) { }
 
-		RedDuckController::~RedDuckController()
+		BlackDuckController::~BlackDuckController()
 		{
 
 		}
 
-		void RedDuckController::initialize()
+		void BlackDuckController::initialize()
 		{
 			DuckController::initialize();
 			duck_model->setMovementDirection(getInitialMovementDirection());
-			duck_model->horizontal_movement_speed = red_duck_horizontal_movement_speed;
-			
+			duck_model->horizontal_movement_speed = black_duck_horizontal_movement_speed;
+
 		}
 
-		MovementDirection RedDuckController::getInitialMovementDirection()
+		MovementDirection BlackDuckController::getInitialMovementDirection()
 		{
 			static MovementDirection initial_direction = getRandomDuckDirection();
 
@@ -41,13 +41,13 @@ namespace Duck
 		}
 
 
-		MovementDirection RedDuckController::getRandomDuckDirection()
+		MovementDirection BlackDuckController::getRandomDuckDirection()
 		{
 			int randomType = std::rand() % 2;
 			return static_cast<Duck::MovementDirection>(randomType);
 		}
 
-		void RedDuckController::move()
+		void BlackDuckController::move()
 		{
 
 			switch (duck_model->getMovementDirection())
@@ -67,17 +67,10 @@ namespace Duck
 			case::Duck::MovementDirection::RIGHT_UP:
 				moveRightUp();
 				break;
-
-			case::Duck::MovementDirection::RIGHT:
-				moveRight();
-				break;
-			case::Duck::MovementDirection::LEFT:
-				moveLeft();
-				break;
 			}
 		}
 
-		void RedDuckController::movelLeftDown()
+		void BlackDuckController::movelLeftDown()
 		{
 			sf::Vector2f currentPosition = duck_model->getDuckCurrentPostion();
 			currentPosition.y += duck_model->vertical_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
@@ -85,7 +78,7 @@ namespace Duck
 
 			if (currentPosition.x <= duck_model->top_left_position.x)
 			{
-					duck_model->setMovementDirection(MovementDirection::RIGHT);	
+				duck_model->setMovementDirection(MovementDirection::RIGHT_DOWN);
 			}
 			else if (currentPosition.y >= duck_model->bottom_right_position.y)
 			{
@@ -94,7 +87,7 @@ namespace Duck
 			else duck_model->setDuckCurrentPostion(currentPosition);
 		}
 
-		void RedDuckController::moveRightDown()
+		void BlackDuckController::moveRightDown()
 		{
 			sf::Vector2f currentPosition = duck_model->getDuckCurrentPostion();
 			currentPosition.y += duck_model->vertical_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
@@ -102,7 +95,7 @@ namespace Duck
 
 			if (currentPosition.x >= duck_model->bottom_right_position.x)
 			{
-					duck_model->setMovementDirection(MovementDirection::LEFT);
+				duck_model->setMovementDirection(MovementDirection::LEFT_DOWN);
 			}
 			else if (currentPosition.y >= duck_model->bottom_right_position.y)
 			{
@@ -111,7 +104,7 @@ namespace Duck
 			else duck_model->setDuckCurrentPostion(currentPosition);
 		}
 
-		void RedDuckController::moveLeftUp()
+		void BlackDuckController::moveLeftUp()
 		{
 			sf::Vector2f currentPosition = duck_model->getDuckCurrentPostion();
 			currentPosition.y -= duck_model->vertical_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
@@ -119,7 +112,7 @@ namespace Duck
 
 			if (currentPosition.x <= duck_model->top_left_position.x)
 			{
-					duck_model->setMovementDirection(MovementDirection::RIGHT);
+				duck_model->setMovementDirection(MovementDirection::RIGHT_UP);
 			}
 			else if (currentPosition.y <= duck_model->top_left_position.y)
 			{
@@ -128,7 +121,7 @@ namespace Duck
 			else duck_model->setDuckCurrentPostion(currentPosition);
 		}
 
-		void RedDuckController::moveRightUp()
+		void BlackDuckController::moveRightUp()
 		{
 			sf::Vector2f currentPosition = duck_model->getDuckCurrentPostion();
 			currentPosition.y -= duck_model->vertical_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
@@ -136,7 +129,7 @@ namespace Duck
 
 			if (currentPosition.x >= duck_model->bottom_right_position.x)
 			{
-					duck_model->setMovementDirection(MovementDirection::LEFT);
+				duck_model->setMovementDirection(MovementDirection::LEFT_UP);
 			}
 			else if (currentPosition.y <= duck_model->top_left_position.y)
 			{
@@ -145,60 +138,6 @@ namespace Duck
 			else duck_model->setDuckCurrentPostion(currentPosition);
 		}
 
-		void RedDuckController::moveRight()
-		{
-			sf::Vector2f current_position = duck_model->getDuckCurrentPostion();
-			current_position.x += duck_model->horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-			if (current_position.x >= duck_model->bottom_right_position.x)
-			{
-				switch (std::rand() % 3)
-				{
-				case 1:
-					duck_model->setMovementDirection(MovementDirection::LEFT_DOWN);
-					break;
-				case 2:
-					duck_model->setMovementDirection(MovementDirection::LEFT_UP);
-					break;
-				case 3:
-					duck_model->setMovementDirection(MovementDirection::LEFT);
-					break;
-				}
-
-
-			}
-			else
-			{
-				duck_model->setDuckCurrentPostion(current_position);
-			}
-		}
-
-		void RedDuckController::moveLeft()
-		{
-			sf::Vector2f current_position = duck_model->getDuckCurrentPostion();
-			current_position.x -= duck_model->horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
-
-			if (current_position.x <= duck_model->top_left_position.x)
-			{
-				switch (std::rand() % 3)
-				{
-				case 1:
-					duck_model->setMovementDirection(MovementDirection::RIGHT_UP);
-					break;
-				case 2:
-					duck_model->setMovementDirection(MovementDirection::RIGHT_DOWN);
-					break;
-				case 3:
-					duck_model->setMovementDirection(MovementDirection::RIGHT);
-					break;
-				}
-			}
-			else
-			{
-				duck_model->setDuckCurrentPostion(current_position);
-			}
-		}
-
-		
 	}
 }

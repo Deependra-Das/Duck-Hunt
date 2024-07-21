@@ -55,8 +55,10 @@ namespace Duck
 		switch (Duck_controller->getDuckType())
 		{
 		case::Duck::DuckType::RED:
-			return Config::duck_texture_path;
+			return Config::red_duck_texture_path;
 
+		case::Duck::DuckType::BLACK:
+			return Config::black_duck_texture_path;
 		}
 	}
 

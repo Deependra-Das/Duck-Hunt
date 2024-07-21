@@ -79,7 +79,7 @@ namespace Wave
 	{
 		if (PlayerModel::player_lives > 1)
 		{
-			if (ducks_shot_in_current_wave < getWaveSystemConfig(current_wave_type).birds_count)
+			if (ducks_shot_in_current_wave < getWaveSystemConfig(current_wave_type).total_birds_count)
 			{					
 				ServiceLocator::getInstance()->getGameplayService()->changeBackgroundColor(Config::background_red_texture_path);
 				ServiceLocator::getInstance()->getPlayerService()->decreasePlayerHealth();
@@ -116,17 +116,17 @@ namespace Wave
 		{
 		case Wave::WaveType::EASY:
 		{
-			const WaveSystemConfig easy_wave_config(1,10,3);
+			const WaveSystemConfig easy_wave_config(1,10,3,2,1);
 			return easy_wave_config;
 		}
 		case Wave::WaveType::MEDIUM:
 		{
-			const WaveSystemConfig medium_wave_config(2, 10, 5);
+			const WaveSystemConfig medium_wave_config(2, 10, 5,4,1);
 			return medium_wave_config;
 		}
 		case Wave::WaveType::HARD:
 		{
-			const WaveSystemConfig hard_wave_config(3, 10, 7);
+			const WaveSystemConfig hard_wave_config(3, 10, 7,6,1);
 			return hard_wave_config;
 		}
 		}
@@ -155,7 +155,7 @@ namespace Wave
 
 	int WaveService::getTotalDuckCount()
 	{
-		return getWaveSystemConfig(current_wave_type).birds_count;
+		return getWaveSystemConfig(current_wave_type).total_birds_count;
 	}
 
 	int WaveService::getLevelNumber()

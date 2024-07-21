@@ -3,6 +3,7 @@
 #include "../../Header/Global/ServiceLocator.h"
 #include "../../Header/Time/TimeService.h"
 #include "../../Header/Duck/Controllers/RedDuckController.h"
+#include "../../Header/Duck/Controllers/BlackDuckController.h"
 
 namespace Duck
 {
@@ -42,18 +43,13 @@ namespace Duck
 		}
 	}
 
-	DuckController* DuckService::SpawnDuck()
+	DuckController* DuckService::SpawnDuck(DuckType type)
 	{
-		DuckController* Duck_controller = createDuck(getRandomDuckType());
+		DuckController* Duck_controller = createDuck(type);
 		Duck_controller->initialize();
 
 		duck_list.push_back(Duck_controller);
 		return Duck_controller;
-	}
-
-	void DuckService::updateSpawnTimer()
-	{
-		spawn_timer += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 	}
 
 	DuckController* DuckService::createDuck(DuckType Duck_type)
@@ -63,16 +59,11 @@ namespace Duck
 		case::Duck::DuckType::RED:
 			return new RedDuckController(Duck::DuckType::RED);
 
+		case::Duck::DuckType::BLACK:
+			return new BlackDuckController(Duck::DuckType::BLACK);
 
 		}
 	}
-
-	DuckType DuckService::getRandomDuckType()
-	{
-		int randomType = std::rand() % 1;
-		return static_cast<Duck::DuckType>(randomType);
-	}
-
 
 	void DuckService::destroyFlaggedDucks()
 	{
@@ -105,23 +96,78 @@ namespace Duck
 		spawn_timer = 0.0f;
 	}
 
+
 	int DuckService::clickedonBird(sf::Vector2f mouse_position)
 	{
-		int duck_shot = 0;
+		int duck_shot = 0, b_duck_shot=0, r_duck_shot=0;
+		int score = 0; sf::Vector2f red_duck_position= sf::Vector2f(- 1, -1);
+
 		for (int i = 0; i < duck_list.size(); i++)
 		{
 			if (duck_list[i]->getDuckSprite().getGlobalBounds().contains(mouse_position))
 			{
-				destroyDuck(duck_list[i]);
-				duck_shot++;
+				if (duck_list[i]->getDuckType() == DuckType::RED)
+				{
+					r_duck_shot++;
+					red_duck_position = duck_list[i]->getDuckPosition();
+					destroyDuck(duck_list[i]);
+				
+				}
+				else if (duck_list[i]->getDuckType() == DuckType::BLACK)
+				{
+					b_duck_shot++;
+					destroyDuck(duck_list[i]);
+				}
 			}
+			
 		}
+
+		if (r_duck_shot > 0)
+		{
+			b_duck_shot+=killNearbyDucks(red_duck_position);
+		}
+
+		duck_shot = r_duck_shot + b_duck_shot;
+		score = (r_duck_shot * 200) + (b_duck_shot * 100);
+
 		ServiceLocator::getInstance()->getPlayerService()->increaseDucksShot(duck_shot);
 		ServiceLocator::getInstance()->getWaveService()->updateDucksShot(duck_shot);
+		return score;
+
+	}
+
+	int DuckService::killNearbyDucks(sf::Vector2f position)
+	{
+		int duck_shot = 0;
+
+		for (int i = 0; i < duck_list.size(); i++)
+		{
+			if (inRangeDucks(position, duck_list[i]->getDuckPosition(), 500))
+			{
+				if (duck_list[i]->getDuckType() == DuckType::BLACK)
+				{
+					duck_shot++;
+					destroyDuck(duck_list[i]);
+				}
+					
+			}
+		}
+
 		return duck_shot;
 
 	}
 
+
+
+	bool DuckService::inRangeDucks(sf::Vector2f pos1, sf::Vector2f pos2, int radius)
+	{
+		float dx = pos1.x - pos2.x;
+		float dy = pos1.y - pos2.y;
+
+		bool x= (dx * dx + dy * dy) < (radius * radius);
+
+		return x;
+	}
 
 
 }

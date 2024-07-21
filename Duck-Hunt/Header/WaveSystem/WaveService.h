@@ -41,7 +41,6 @@ namespace Wave
 
 		void spawnWaveSystem(WaveType wave_type);
 		void destroyWaveSystem(WaveSystem* wave_system);
-		void updateCurrentWave();
 		void updateDucksShot(int shot);
 		void processNextWave();
 		int getTotalDuckCount();

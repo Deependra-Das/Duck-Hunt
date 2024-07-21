@@ -6,8 +6,9 @@ namespace Player
 	using namespace Global;
 
 	int PlayerModel::player_lives;
-	int PlayerModel::ducks_shot;
+	int PlayerModel::player_score;
 	int PlayerModel::ammo_count;
+	int PlayerModel::ducks_shot;
 
 	PlayerModel::PlayerModel()
 	{
@@ -29,7 +30,7 @@ namespace Player
 		player_state = PlayerState::ALIVE;
 		setMaxAmmo();
 		player_lives = max_player_lives;
-		ducks_shot = 0;
+		player_score = 0;
 	}
 
 	sf::Vector2f PlayerModel::getPlayerPosition()

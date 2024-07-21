@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Source\Duck\Controllers\BlackDuckController.cpp" />
     <ClCompile Include="Source\Duck\Controllers\RedDuckController.cpp" />
     <ClCompile Include="Source\Duck\DuckController.cpp" />
     <ClCompile Include="Source\Duck\DuckModel.cpp" />
@@ -160,6 +161,7 @@
     <ClCompile Include="Source\WaveSystem\WaveSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header\Duck\Controllers\BlackDuckController.h" />
     <ClInclude Include="Header\Duck\Controllers\RedDuckController.h" />
     <ClInclude Include="Header\Duck\DuckConfig.h" />
     <ClInclude Include="Header\Duck\DuckController.h" />

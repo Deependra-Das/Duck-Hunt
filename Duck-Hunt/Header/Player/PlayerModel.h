@@ -26,6 +26,7 @@ namespace Player
 
         const int max_player_lives = 3;
         static int player_lives;
+        static int player_score;
         static int ducks_shot;
         static int ammo_count;
         sf::Vector2f player_position;
