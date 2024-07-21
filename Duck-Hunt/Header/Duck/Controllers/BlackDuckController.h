@@ -6,11 +6,11 @@ namespace Duck
 {
     namespace Controller
     {
-        class RedDuckController : public DuckController
+        class BlackDuckController : public DuckController
         {
         private:
-            
-            const float red_duck_horizontal_movement_speed = 500.0f;
+
+            const float black_duck_horizontal_movement_speed = 250.0f;
             float red_duck_rate_of_fire = 2.0f;
 
             void move() override;
@@ -18,15 +18,13 @@ namespace Duck
             void moveRightDown();
             void moveLeftUp();
             void moveRightUp();
-            void moveLeft();
-            void moveRight();
 
             MovementDirection getRandomDuckDirection();
             MovementDirection getInitialMovementDirection();
 
         public:
-            RedDuckController(DuckType type);
-            ~RedDuckController();
+            BlackDuckController(DuckType type);
+            ~BlackDuckController();
 
             void initialize() override;
 

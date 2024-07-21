@@ -15,9 +15,6 @@ namespace Duck
 		const float spawn_interval = 2.0f;
 		float spawn_timer;
 
-		void updateSpawnTimer();
-		void processDuckSpawn();
-		DuckType getRandomDuckType();
 		DuckController* createDuck(DuckType enemy_type);
 
 		void destroyFlaggedDucks();
@@ -32,10 +29,14 @@ namespace Duck
 		void render();
 		void reset();
 
-		DuckController* SpawnDuck();
+		DuckController* SpawnDuck(DuckType type);
 
 		int clickedonBird(sf::Vector2f mouse_position);
 
 		void destroyDuck(DuckController* duck_controller);
+
+		bool inRangeDucks(sf::Vector2f enemy1pos, sf::Vector2f enemy2pos, int radius);
+
+		int killNearbyDucks(sf::Vector2f position);
 	};
 }

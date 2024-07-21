@@ -91,7 +91,9 @@ namespace Player
 	{
 		/*if (PlayerModel::ammo_count > 0)
 		{*/	
-			int duck_shot = ServiceLocator::getInstance()->getDuckService()->clickedonBird(mouse_position);
+			int score = ServiceLocator::getInstance()->getDuckService()->clickedonBird(mouse_position);
+			PlayerModel::player_score += score;
+
 		/*	decreasePlayerAmmo();
 		}*/	
 	}
