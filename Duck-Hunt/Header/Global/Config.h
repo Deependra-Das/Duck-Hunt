@@ -25,5 +25,12 @@ namespace Global
 		static const sf::String Rajdhani_font_path;
 		static const sf::String bubble_bobble_font_path;
 		static const sf::String DS_DIGIB_font_path;
+
+
+		static const sf::String background_music_path;
+		static const sf::String button_click_sound_path;
+		static const sf::String bullet_fire_sound_path;
+		static const sf::String powerup_disabled_sound_path;
+		static const sf::String powerup_enabled_sound_path;
 	};
 }

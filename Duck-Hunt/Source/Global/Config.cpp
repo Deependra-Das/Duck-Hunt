@@ -37,4 +37,16 @@ namespace Global
 	const sf::String Config::bubble_bobble_font_path = "Assets/Fonts/bubbleBobble.ttf";
 
 	const sf::String Config::DS_DIGIB_font_path = "Assets/Fonts/DS_DIGIB.ttf";
+
+
+
+	const sf::String Config::background_music_path = "Assets/Audio/background_music.mp3";
+
+	const sf::String Config::button_click_sound_path = "Assets/Audio/button_click_sound.wav";
+
+	const sf::String Config::bullet_fire_sound_path = "Assets/Audio/bullet_fire.wav";
+
+	const sf::String Config::powerup_disabled_sound_path = "Assets/Audio/powerup_disabled.ogg";
+
+	const sf::String Config::powerup_enabled_sound_path = "Assets/Audio/powerup_enabled.ogg";
 }
