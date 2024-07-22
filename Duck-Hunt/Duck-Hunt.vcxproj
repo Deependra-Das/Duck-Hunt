@@ -131,6 +131,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Source\AnimationSystem\AnimationService.cpp" />
+    <ClCompile Include="Source\AnimationSystem\AnimationSystem.cpp" />
     <ClCompile Include="Source\Duck\Controllers\BlackDuckController.cpp" />
     <ClCompile Include="Source\Duck\Controllers\RedDuckController.cpp" />
     <ClCompile Include="Source\Duck\DuckController.cpp" />
@@ -154,6 +156,7 @@
     <ClCompile Include="Source\UI\GameOverUI\GameOverUIController.cpp" />
     <ClCompile Include="Source\UI\GameplayUI\GameplayUIController.cpp" />
     <ClCompile Include="Source\UI\MainMenuUI\MainMenuUIController.cpp" />
+    <ClCompile Include="Source\UI\UIElement\AnimatedImageView.cpp" />
     <ClCompile Include="Source\UI\UIElement\ButtonView.cpp" />
     <ClCompile Include="Source\UI\UIElement\ImageView.cpp" />
     <ClCompile Include="Source\UI\UIElement\TextView.cpp" />
@@ -163,6 +166,9 @@
     <ClCompile Include="Source\WaveSystem\WaveSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header\AnimationSystem\AnimationService.h" />
+    <ClInclude Include="Header\AnimationSystem\AnimationSystem.h" />
+    <ClInclude Include="Header\AnimationSystem\AnimationSystemConfig.h" />
     <ClInclude Include="Header\Duck\Controllers\BlackDuckController.h" />
     <ClInclude Include="Header\Duck\Controllers\RedDuckController.h" />
     <ClInclude Include="Header\Duck\DuckConfig.h" />
@@ -188,6 +194,7 @@
     <ClInclude Include="Header\UI\GameplayUI\GameplayUIController.h" />
     <ClInclude Include="Header\UI\Interface\IUIController.h" />
     <ClInclude Include="Header\UI\MainMenuUI\MainMenuUIController.h" />
+    <ClInclude Include="Header\UI\UIElement\AnimatedImageView.h" />
     <ClInclude Include="Header\UI\UIElement\ButtonView.h" />
     <ClInclude Include="Header\UI\UIElement\ImageView.h" />
     <ClInclude Include="Header\UI\UIElement\TextView.h" />

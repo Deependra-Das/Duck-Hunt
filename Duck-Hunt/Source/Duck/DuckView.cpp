@@ -24,53 +24,69 @@ namespace Duck
 
 	void DuckView::createUIElements()
 	{
-		Duck_image = new ImageView();
+		duck_image = new AnimatedImageView();
 	}
 
 	void DuckView::initialize(DuckController* controller)
 	{
-		Duck_controller = controller;
+		duck_controller = controller;
 		initializeImage();
 	}
 
 	void DuckView::initializeImage()
 	{
-		Duck_image->initialize(getDuckTexturePath(), Duck_sprite_width, Duck_sprite_height, Duck_controller->getDuckPosition());
+		duck_image->initialize(getDuckTexturePath(), duck_sprite_width, duck_sprite_height, duck_controller->getDuckPosition());
+		updateDuckAnimation(AnimationType::FLYING, duck_controller->getDuckType());
 	}
 
 	void DuckView::update()
 	{
-		Duck_image->setPosition(Duck_controller->getDuckPosition());
-		Duck_image->update();
+		duck_image->setPosition(duck_controller->getDuckPosition());
+		duck_image->update();
 	}
 
 	void DuckView::render()
 	{
-		Duck_image->render();
+		duck_image->render();
 	}
 
 
 	sf::String DuckView::getDuckTexturePath()
 	{
-		switch (Duck_controller->getDuckType())
+		switch (duck_controller->getDuckType())
 		{
 		case::Duck::DuckType::RED:
-			return Config::red_duck_texture_path;
+			return Config::duck_texture_path;
 
 		case::Duck::DuckType::BLACK:
-			return Config::black_duck_texture_path;
+			return Config::duck_texture_path;
 		}
 	}
 
 	void DuckView::destroy()
 	{
-		delete(Duck_image);
+		delete(duck_image);
 	}
 
 	const sf::Sprite& DuckView::getDuckSprite()
 	{
-		return Duck_image->getSprite();
+		return duck_image->getSprite();
 	}
 
+	void DuckView::flipSpriteHorizontal()
+	{
+		duck_image->flipSpriteHorizontal();
+	}
+
+	void DuckView::unflipSpriteHorizontal()
+	{
+		duck_image->unflipSpriteHorizontal();
+	}
+
+	void DuckView::updateDuckAnimation(AnimationType a_type, DuckType d_type)
+	{
+		duck_image->playDuckAnimation(a_type, d_type);
+	}
+	
 
 }

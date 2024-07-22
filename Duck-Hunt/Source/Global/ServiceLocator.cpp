@@ -13,6 +13,7 @@ namespace Global
 	using namespace Player;
 	using namespace Wave;
 	using namespace Sound;
+	using namespace Animation;
 
 	ServiceLocator::ServiceLocator()
 	{
@@ -25,6 +26,7 @@ namespace Global
 		player_service = nullptr;
 		wave_service = nullptr;
 		sound_service = nullptr;
+		animation_service = nullptr;
 		createServices();
 	}
 
@@ -44,6 +46,7 @@ namespace Global
 		player_service = new PlayerService();
 		wave_service = new WaveService();
 		sound_service = new SoundService();
+		animation_service = new AnimationService();
 	}
 
 	void ServiceLocator::clearAllServices()
@@ -57,6 +60,7 @@ namespace Global
 		delete(player_service);
 		delete(wave_service);
 		delete(sound_service);
+		delete(animation_service);
 	}
 
 	ServiceLocator* ServiceLocator::getInstance()
@@ -76,6 +80,8 @@ namespace Global
 		player_service->initialize();
 		wave_service->initialize();
 		sound_service->initialize();
+		animation_service->initialize();
+
 	}
 
 	void ServiceLocator::update()
@@ -90,6 +96,7 @@ namespace Global
 			duck_service->update();
 			player_service->update();
 			wave_service->update();
+			animation_service->update();
 		}
 
 		ui_service->update();
@@ -105,6 +112,7 @@ namespace Global
 			duck_service->render();
 			player_service->render();
 			wave_service->render();
+			animation_service->render();
 		}
 		ui_service->render();
 	}
@@ -152,6 +160,11 @@ namespace Global
 	SoundService* ServiceLocator::getSoundService()
 	{
 		return sound_service;
+	}
+
+	AnimationService* ServiceLocator::getAnimationService()
+	{
+		return animation_service;
 	}
 
 

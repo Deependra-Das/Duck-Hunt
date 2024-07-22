@@ -22,5 +22,7 @@ namespace Duck
         RIGHT_DOWN,
         RIGHT,
         LEFT,
+        UP,
+        DOWN
     };
 }

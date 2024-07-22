@@ -22,15 +22,16 @@ namespace Global
 
 	const sf::String Config::foreground_texture_path = "Assets/Textures/foreground_texture.png";
 
-	const sf::String Config::red_duck_texture_path = "Assets/Textures/red_bird_sprite.png";
-
-	const sf::String Config::black_duck_texture_path = "Assets/Textures/black_bird_sprite.png";
+	const sf::String Config::duck_texture_path = "Assets/Textures/duck_sprite_sheet.png";
 
 	const sf::String Config::crosshair_texture_path = "Assets/Textures/crosshair.png";
 
 	const sf::String Config::player_texture_path = "Assets/Textures/player_health.png";
 
 	const sf::String Config::ammo_texture_path = "Assets/Textures/ammo_texture.png";
+
+	const sf::String Config::explosion_texture_path = "Assets/Textures/explosion.png";
+
 
 	const sf::String Config::Rajdhani_font_path = "Assets/Fonts/Rajdhani.ttf";
 

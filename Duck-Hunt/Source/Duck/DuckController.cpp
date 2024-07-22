@@ -85,4 +85,5 @@ namespace Duck
 	{
 		ServiceLocator::getInstance()->getDuckService()->destroyDuck(this);
 	}
+
 }

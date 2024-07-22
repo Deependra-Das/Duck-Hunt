@@ -94,5 +94,16 @@ namespace UI
         {
             return image_sprite;
         }
+
+
+        void ImageView::flipSpriteHorizontal()
+        {
+            image_sprite.setScale(-1, 1);
+        }
+
+        void ImageView::unflipSpriteHorizontal()
+        {
+            image_sprite.setScale(1, 1);
+        }
     }
 }
