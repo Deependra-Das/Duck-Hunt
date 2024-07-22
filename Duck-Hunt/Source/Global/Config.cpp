@@ -30,7 +30,7 @@ namespace Global
 
 	const sf::String Config::ammo_texture_path = "Assets/Textures/ammo_texture.png";
 
-	const sf::String Config::explosion_texture_path = "Assets/Textures/explosion.png";
+	const sf::String Config::winner_texture_path = "Assets/Textures/winner_texture.png";
 
 
 	const sf::String Config::Rajdhani_font_path = "Assets/Fonts/Rajdhani.ttf";

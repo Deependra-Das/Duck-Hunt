@@ -10,6 +10,7 @@ namespace Main
 		MAIN_MENU,
 		GAMEPLAY,
 		GAMEOVER,
+		GAMEWINNER,
 	};
 
 	class GameService
