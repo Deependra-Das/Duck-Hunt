@@ -70,15 +70,16 @@ namespace UI
             {
             case AnimationType::FLYING:
             {
-                current_frame = col = 0; tile_width = 72; tile_height = 84.5; number_of_frames = 3;
+                current_frame = col = 0; tile_width = 72.f; tile_height = 84.5f; number_of_frames = 3;
                 break;
             }
    
             case AnimationType::GLIDING:
             {
-                current_frame = col = 3; tile_width = 72; tile_height = 84.5; number_of_frames = 3;
+                current_frame = col = 3; tile_width = 72.f; tile_height = 84.5f; number_of_frames = 3;
                 break;
             }
+
               
             }
         }

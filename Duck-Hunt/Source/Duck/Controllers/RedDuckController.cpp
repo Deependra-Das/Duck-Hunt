@@ -74,6 +74,7 @@ namespace Duck
 			case::Duck::MovementDirection::RIGHT:
 				moveRight();
 				break;
+
 			case::Duck::MovementDirection::LEFT:
 				moveLeft();
 				break;

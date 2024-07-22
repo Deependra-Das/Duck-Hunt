@@ -9,6 +9,7 @@
 #include "../../Header/Player/PlayerService.h"
 #include "../../Header/WaveSystem/WaveService.h"
 #include "../../Header/Sound/SoundService.h"
+#include "../../Header/AnimationSystem/AnimationService.h"
 
 namespace Global
 {
@@ -28,6 +29,7 @@ namespace Global
         Player::PlayerService* player_service;
         Wave::WaveService* wave_service;
         Sound::SoundService* sound_service;
+        Animation::AnimationService* animation_service;
 
         void createServices();
         void clearAllServices();
@@ -49,6 +51,7 @@ namespace Global
         Player::PlayerService* getPlayerService();
         Wave::WaveService* getWaveService();
         Sound::SoundService* getSoundService();
+        Animation::AnimationService* getAnimationService();
 
         void deleteServiceLocator();
     };

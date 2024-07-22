@@ -17,11 +17,12 @@ namespace Global
 		static const sf::String background_red_texture_path;
 		static const sf::String game_over_texture_path;
 		static const sf::String foreground_texture_path;
-		static const sf::String red_duck_texture_path;
-		static const sf::String black_duck_texture_path;
+		static const sf::String duck_texture_path;
 		static const sf::String crosshair_texture_path;
 		static const sf::String player_texture_path;
 		static const sf::String ammo_texture_path;
+		static const sf::String explosion_texture_path;
+
 		static const sf::String Rajdhani_font_path;
 		static const sf::String bubble_bobble_font_path;
 		static const sf::String DS_DIGIB_font_path;

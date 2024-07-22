@@ -12,6 +12,7 @@ namespace UI
 		{
 			FLYING,
 			GLIDING,
+			DUCKSHOT
 		};
 
 		class AnimatedImageView :public ImageView
