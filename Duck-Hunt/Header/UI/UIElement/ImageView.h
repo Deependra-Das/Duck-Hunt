@@ -32,6 +32,9 @@ namespace UI
 			void setCentreAlinged();
 
 			const virtual sf::Sprite& getSprite();
+
+			void flipSpriteHorizontal();
+			void unflipSpriteHorizontal();
 		};
 	}
 }

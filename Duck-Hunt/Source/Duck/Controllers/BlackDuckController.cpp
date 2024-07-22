@@ -1,5 +1,6 @@
 #include "../../Header/Duck/Controllers/BlackDuckController.h"
 #include "../../Header/Duck/DuckModel.h"
+#include "../../Header/Duck/DuckView.h"
 #include "../../Header/Duck/DuckConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
 
@@ -79,10 +80,12 @@ namespace Duck
 			if (currentPosition.x <= duck_model->top_left_position.x)
 			{
 				duck_model->setMovementDirection(MovementDirection::RIGHT_DOWN);
+				duck_view->unflipSpriteHorizontal();
 			}
 			else if (currentPosition.y >= duck_model->bottom_right_position.y)
 			{
 				duck_model->setMovementDirection(MovementDirection::LEFT_UP);
+				duck_view->flipSpriteHorizontal();
 			}
 			else duck_model->setDuckCurrentPostion(currentPosition);
 		}
@@ -96,10 +99,12 @@ namespace Duck
 			if (currentPosition.x >= duck_model->bottom_right_position.x)
 			{
 				duck_model->setMovementDirection(MovementDirection::LEFT_DOWN);
+				duck_view->flipSpriteHorizontal();
 			}
 			else if (currentPosition.y >= duck_model->bottom_right_position.y)
 			{
 				duck_model->setMovementDirection(MovementDirection::RIGHT_UP);
+				duck_view->unflipSpriteHorizontal();
 			}
 			else duck_model->setDuckCurrentPostion(currentPosition);
 		}
@@ -113,10 +118,12 @@ namespace Duck
 			if (currentPosition.x <= duck_model->top_left_position.x)
 			{
 				duck_model->setMovementDirection(MovementDirection::RIGHT_UP);
+				duck_view->unflipSpriteHorizontal();
 			}
 			else if (currentPosition.y <= duck_model->top_left_position.y)
 			{
 				duck_model->setMovementDirection(MovementDirection::LEFT_DOWN);
+				duck_view->flipSpriteHorizontal();
 			}
 			else duck_model->setDuckCurrentPostion(currentPosition);
 		}
@@ -130,10 +137,12 @@ namespace Duck
 			if (currentPosition.x >= duck_model->bottom_right_position.x)
 			{
 				duck_model->setMovementDirection(MovementDirection::LEFT_UP);
+				duck_view->flipSpriteHorizontal();
 			}
 			else if (currentPosition.y <= duck_model->top_left_position.y)
 			{
 				duck_model->setMovementDirection(MovementDirection::RIGHT_DOWN);
+				duck_view->unflipSpriteHorizontal();
 			}
 			else duck_model->setDuckCurrentPostion(currentPosition);
 		}

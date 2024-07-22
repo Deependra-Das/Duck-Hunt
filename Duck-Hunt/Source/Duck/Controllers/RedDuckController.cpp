@@ -1,11 +1,14 @@
 #include "../../Header/Duck/Controllers/RedDuckController.h"
 #include "../../Header/Duck/DuckModel.h"
+#include "../../Header/Duck/DuckView.h"
 #include "../../Header/Duck/DuckConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
+#include "../../header/UI/UIElement/AnimatedImageView.h"
 
 namespace Duck
 {
 	using namespace Global;
+	using namespace UI::UIElement;
 
 	namespace Controller
 	{
@@ -86,10 +89,14 @@ namespace Duck
 			if (currentPosition.x <= duck_model->top_left_position.x)
 			{
 					duck_model->setMovementDirection(MovementDirection::RIGHT);	
+					duck_view->updateDuckAnimation(AnimationType::FLYING, getDuckType());
+					duck_view->unflipSpriteHorizontal();
 			}
 			else if (currentPosition.y >= duck_model->bottom_right_position.y)
 			{
 				duck_model->setMovementDirection(MovementDirection::LEFT_UP);
+				duck_view->updateDuckAnimation(AnimationType::FLYING, getDuckType());
+				duck_view->flipSpriteHorizontal();
 			}
 			else duck_model->setDuckCurrentPostion(currentPosition);
 		}
@@ -103,10 +110,14 @@ namespace Duck
 			if (currentPosition.x >= duck_model->bottom_right_position.x)
 			{
 					duck_model->setMovementDirection(MovementDirection::LEFT);
+					duck_view->updateDuckAnimation(AnimationType::GLIDING, getDuckType());
+					duck_view->flipSpriteHorizontal();
 			}
 			else if (currentPosition.y >= duck_model->bottom_right_position.y)
 			{
 				duck_model->setMovementDirection(MovementDirection::RIGHT_UP);
+				duck_view->updateDuckAnimation(AnimationType::FLYING, getDuckType());
+				duck_view->unflipSpriteHorizontal();
 			}
 			else duck_model->setDuckCurrentPostion(currentPosition);
 		}
@@ -120,10 +131,14 @@ namespace Duck
 			if (currentPosition.x <= duck_model->top_left_position.x)
 			{
 					duck_model->setMovementDirection(MovementDirection::RIGHT);
+					duck_view->updateDuckAnimation(AnimationType::FLYING, getDuckType());
+					duck_view->unflipSpriteHorizontal();
 			}
 			else if (currentPosition.y <= duck_model->top_left_position.y)
 			{
 				duck_model->setMovementDirection(MovementDirection::LEFT_DOWN);
+				duck_view->updateDuckAnimation(AnimationType::FLYING, getDuckType());
+				duck_view->flipSpriteHorizontal();
 			}
 			else duck_model->setDuckCurrentPostion(currentPosition);
 		}
@@ -137,10 +152,14 @@ namespace Duck
 			if (currentPosition.x >= duck_model->bottom_right_position.x)
 			{
 					duck_model->setMovementDirection(MovementDirection::LEFT);
+					duck_view->updateDuckAnimation(AnimationType::GLIDING, getDuckType());
+					duck_view->flipSpriteHorizontal();
 			}
 			else if (currentPosition.y <= duck_model->top_left_position.y)
 			{
 				duck_model->setMovementDirection(MovementDirection::RIGHT_DOWN);
+				duck_view->updateDuckAnimation(AnimationType::FLYING, getDuckType());
+				duck_view->unflipSpriteHorizontal();
 			}
 			else duck_model->setDuckCurrentPostion(currentPosition);
 		}
@@ -155,14 +174,30 @@ namespace Duck
 				switch (std::rand() % 3)
 				{
 				case 1:
+				{
 					duck_model->setMovementDirection(MovementDirection::LEFT_DOWN);
+					duck_view->updateDuckAnimation(AnimationType::FLYING, getDuckType());
+					duck_view->flipSpriteHorizontal();
 					break;
+				}
+					
 				case 2:
+				{
 					duck_model->setMovementDirection(MovementDirection::LEFT_UP);
+					duck_view->updateDuckAnimation(AnimationType::FLYING, getDuckType());
+					duck_view->flipSpriteHorizontal();
 					break;
+
+				}
+					
 				case 3:
+				{
 					duck_model->setMovementDirection(MovementDirection::LEFT);
+					duck_view->updateDuckAnimation(AnimationType::GLIDING, getDuckType());
+					duck_view->flipSpriteHorizontal();
 					break;
+				}
+					
 				}
 
 
@@ -183,14 +218,30 @@ namespace Duck
 				switch (std::rand() % 3)
 				{
 				case 1:
+				{
 					duck_model->setMovementDirection(MovementDirection::RIGHT_UP);
+					duck_view->updateDuckAnimation(AnimationType::FLYING, getDuckType());
+					duck_view->unflipSpriteHorizontal();
 					break;
+				}
+					
+				
 				case 2:
+				{
 					duck_model->setMovementDirection(MovementDirection::RIGHT_DOWN);
+					duck_view->updateDuckAnimation(AnimationType::FLYING, getDuckType());
+					duck_view->unflipSpriteHorizontal();
 					break;
+				}
+					
 				case 3:
+				{
 					duck_model->setMovementDirection(MovementDirection::RIGHT);
+					duck_view->updateDuckAnimation(AnimationType::GLIDING, getDuckType());
+					duck_view->unflipSpriteHorizontal();
 					break;
+				}
+				
 				}
 			}
 			else

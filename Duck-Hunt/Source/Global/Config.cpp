@@ -24,7 +24,7 @@ namespace Global
 
 	const sf::String Config::red_duck_texture_path = "Assets/Textures/red_bird_sprite.png";
 
-	const sf::String Config::black_duck_texture_path = "Assets/Textures/black_bird_sprite.png";
+	const sf::String Config::black_duck_texture_path = "Assets/Textures/duck_sprite_sheet.png";
 
 	const sf::String Config::crosshair_texture_path = "Assets/Textures/crosshair.png";
 
