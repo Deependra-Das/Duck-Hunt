@@ -21,7 +21,7 @@ namespace Global
 		static const sf::String crosshair_texture_path;
 		static const sf::String player_texture_path;
 		static const sf::String ammo_texture_path;
-		static const sf::String explosion_texture_path;
+		static const sf::String winner_texture_path;
 
 		static const sf::String Rajdhani_font_path;
 		static const sf::String bubble_bobble_font_path;

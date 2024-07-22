@@ -99,7 +99,7 @@ namespace Wave
 				else 
 				{
 					start_new_wave = false;
-					GameService::setGameState(GameState::GAMEOVER);
+					GameService::setGameState(GameState::GAMEWINNER);
 				}
 				
 			}

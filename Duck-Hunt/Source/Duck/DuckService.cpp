@@ -149,6 +149,7 @@ namespace Duck
 				if (duck_list[i]->getDuckType() == DuckType::BLACK)
 				{
 					duck_shot++;
+					ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(duck_list[i]->getDuckPosition(), Animation::AnimationType::BLACK_DUCK_FALL, MovementDirection::DOWN);
 					destroyDuck(duck_list[i]);
 				}
 					
@@ -171,6 +172,7 @@ namespace Duck
 				if (duck_list[i]->getDuckType() == DuckType::RED)
 				{
 					r_duck_shot++;
+					ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(duck_list[i]->getDuckPosition(), Animation::AnimationType::RED_DUCK_FALL, MovementDirection::DOWN);
 					red_duck_position = duck_list[i]->getDuckPosition();
 					destroyDuck(duck_list[i]);
 
@@ -178,16 +180,17 @@ namespace Duck
 				else if (duck_list[i]->getDuckType() == DuckType::BLACK)
 				{
 					b_duck_shot++;
+					ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(duck_list[i]->getDuckPosition(), Animation::AnimationType::BLACK_DUCK_FALL, MovementDirection::DOWN);
 					destroyDuck(duck_list[i]);
 				}
 			}
 
 		}
 
-		if (r_duck_shot > 0)
+	/*	if (r_duck_shot > 0)
 		{
 			b_duck_shot += killNearbyDucks(red_duck_position);
-		}
+		}*/
 
 		duck_shot = r_duck_shot + b_duck_shot;
 		score = (r_duck_shot * 200) + (b_duck_shot * 100);
@@ -206,11 +209,6 @@ namespace Duck
 		bool x= (dx * dx + dy * dy) < (radius * radius);
 
 		return x;
-	}
-
-	void playduckShotAnimation()
-	{
-
 	}
 
 
