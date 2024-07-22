@@ -20,5 +20,6 @@ namespace Player
 		void reset();
 		void increaseDucksShot(int val);
 		void decreasePlayerHealth();
+		void resetPowerup();
 	};
 }

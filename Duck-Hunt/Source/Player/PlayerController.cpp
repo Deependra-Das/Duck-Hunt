@@ -37,10 +37,21 @@ namespace Player
 		sf::Vector2i mouse_position = sf::Vector2i(sf::Mouse::getPosition(*game_window));
 		sf::Vector2f mouseCoord { game_window->mapPixelToCoords(mouse_position) };
 
-		mouseCoord.x -= 30; mouseCoord.y -= 30;
 
-		player_model->setPlayerPosition(mouseCoord);
+		if (event_service->pressedAKey() && PlayerModel::is_radial_shot_activated==true && PlayerModel::radial_shot>0)
+		{
+			PlayerModel::is_radial_shot_activated = false;
+		}
+		else if (event_service->pressedAKey() && PlayerModel::is_radial_shot_activated == false && PlayerModel::radial_shot > 0)
+		{
+			PlayerModel::is_radial_shot_activated = true;
+		}
 
+		if (PlayerModel::is_radial_shot_activated == true && PlayerModel::radial_shot > 0)
+		{
+			mouseCoord.x -= 250; mouseCoord.y -= 250;
+			player_model->setPlayerPosition(mouseCoord);
+		}
 
 		if (event_service->pressedLeftMouseButton())
 		{
@@ -62,8 +73,6 @@ namespace Player
 		case::Player::PlayerState::ALIVE:
 			processPlayerInput();
 			break;
-
-			break;
 		}
 
 		player_view->update();
@@ -71,7 +80,11 @@ namespace Player
 
 	void PlayerController::render()
 	{
-		player_view->render();
+		if (PlayerModel::is_radial_shot_activated == true)
+		{
+			player_view->render();
+		}
+	
 	}
 
 	sf::Vector2f PlayerController::getPlayerPosition()
@@ -93,9 +106,19 @@ namespace Player
 	{
 		/*if (PlayerModel::ammo_count > 0)
 		{*/	
-			int score = ServiceLocator::getInstance()->getDuckService()->clickedonBird(mouse_position);
-			PlayerModel::player_score += score;
-			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BULLET_FIRE);
+		if (PlayerModel::is_radial_shot_activated && PlayerModel::radial_shot > 0)
+		{
+			PlayerModel::player_score += ServiceLocator::getInstance()->getDuckService()->radialClickOnDuck(mouse_position);
+			PlayerModel::is_radial_shot_activated = false;
+			PlayerModel::radial_shot = 0;
+		}
+		else 
+		{
+			PlayerModel::player_score += ServiceLocator::getInstance()->getDuckService()->pointClickedOnDuck(mouse_position);
+
+		}
+	
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BULLET_FIRE);
 		/*	decreasePlayerAmmo();
 		}*/	
 	}

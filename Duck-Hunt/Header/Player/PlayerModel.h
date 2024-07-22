@@ -21,6 +21,8 @@ namespace Player
         friend void UI::GameplayUI::GameplayUIController::updateScoreText();
         friend void UI::GameplayUI::GameplayUIController::drawPlayerLivesImage();
         friend void UI::GameplayUI::GameplayUIController::drawPlayerAmmoImage();
+        friend void UI::GameplayUI::GameplayUIController::updatePowerupCountText();
+        friend void UI::GameplayUI::GameplayUIController::drawPowerupImage();
         friend void Wave::WaveService::processNextWave();
         friend void Wave::WaveSystem::setPlayerAmmoCount();
 
@@ -29,6 +31,8 @@ namespace Player
         static int player_score;
         static int ducks_shot;
         static int ammo_count;
+        static int radial_shot;
+        static bool is_radial_shot_activated;
         sf::Vector2f player_position;
         PlayerState player_state;
 

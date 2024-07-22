@@ -63,6 +63,7 @@ namespace Wave
 		WaveSystem* wave_system = new WaveSystem(getWaveSystemConfig(Wave_type));
 		wave_system->initialize();
 		wave_system_list.push_back(wave_system);
+		ServiceLocator::getInstance()->getPlayerService()->resetPowerup();
 		start_new_wave = false;
 	}
 

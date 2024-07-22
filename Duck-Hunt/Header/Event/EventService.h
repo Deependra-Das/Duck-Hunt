@@ -15,7 +15,7 @@ namespace Event
 	{
 	private:
 		ButtonState left_mouse_button_state;
-
+		ButtonState A_button_state;
 		sf::Event game_event;
 		sf::RenderWindow* game_window;
 
@@ -24,6 +24,7 @@ namespace Event
 		bool hasQuitGame();
 
 		void updateMouseButtonsState(ButtonState& current_button_state, sf::Mouse::Button mouse_button);
+		void updateKeyboardButtonsState(ButtonState& current_button_state, sf::Keyboard::Key keyboard_button);
 	
 	public:
 		EventService();
@@ -35,5 +36,6 @@ namespace Event
 		bool pressedEscapeKey();
 		bool isKeyboardEvent();
 		bool pressedLeftMouseButton();
+		bool pressedAKey();
 	};
 }
