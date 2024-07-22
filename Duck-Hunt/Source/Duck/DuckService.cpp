@@ -97,7 +97,7 @@ namespace Duck
 	}
 
 
-	int DuckService::clickedonBird(sf::Vector2f mouse_position)
+	int DuckService::pointClickedOnDuck(sf::Vector2f mouse_position)
 	{
 		int duck_shot = 0, b_duck_shot=0, r_duck_shot=0;
 		int score = 0; sf::Vector2f red_duck_position= sf::Vector2f(- 1, -1);
@@ -157,7 +157,44 @@ namespace Duck
 
 	}
 
+	int DuckService::radialClickOnDuck(sf::Vector2f mouse_position)
+	{
+		int duck_shot = 0, b_duck_shot = 0, r_duck_shot = 0;
+		int score = 0; sf::Vector2f red_duck_position = sf::Vector2f(-1, -1);
 
+		for (int i = 0; i < duck_list.size(); i++)
+		{
+			if (inRangeDucks(mouse_position, duck_list[i]->getDuckPosition(),500))
+			{
+				if (duck_list[i]->getDuckType() == DuckType::RED)
+				{
+					r_duck_shot++;
+					red_duck_position = duck_list[i]->getDuckPosition();
+					destroyDuck(duck_list[i]);
+
+				}
+				else if (duck_list[i]->getDuckType() == DuckType::BLACK)
+				{
+					b_duck_shot++;
+					destroyDuck(duck_list[i]);
+				}
+			}
+
+		}
+
+		if (r_duck_shot > 0)
+		{
+			b_duck_shot += killNearbyDucks(red_duck_position);
+		}
+
+		duck_shot = r_duck_shot + b_duck_shot;
+		score = (r_duck_shot * 200) + (b_duck_shot * 100);
+
+		ServiceLocator::getInstance()->getPlayerService()->increaseDucksShot(duck_shot);
+		ServiceLocator::getInstance()->getWaveService()->updateDucksShot(duck_shot);
+		return score;
+
+	}
 
 	bool DuckService::inRangeDucks(sf::Vector2f pos1, sf::Vector2f pos2, int radius)
 	{

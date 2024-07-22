@@ -47,4 +47,9 @@ namespace Player
 		player_controller->decreasePlayerLive();
 	}
 
+	void PlayerService::resetPowerup()
+	{
+		player_controller->resetPowerup();
+	}
+
 }

@@ -9,6 +9,8 @@ namespace Player
 	int PlayerModel::player_score;
 	int PlayerModel::ammo_count;
 	int PlayerModel::ducks_shot;
+	int PlayerModel::radial_shot;
+	bool PlayerModel::is_radial_shot_activated;
 
 	PlayerModel::PlayerModel()
 	{
@@ -31,6 +33,8 @@ namespace Player
 		setMaxAmmo();
 		player_lives = max_player_lives;
 		player_score = 0;
+		is_radial_shot_activated = false;
+		radial_shot = 1;
 	}
 
 	sf::Vector2f PlayerModel::getPlayerPosition()

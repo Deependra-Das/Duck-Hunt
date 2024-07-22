@@ -18,6 +18,7 @@ namespace Event
     void EventService::update()
     {
         updateMouseButtonsState(left_mouse_button_state, sf::Mouse::Left);
+        updateKeyboardButtonsState(A_button_state, sf::Keyboard::A);
     }
 
     void EventService::processEvents()
@@ -64,10 +65,35 @@ namespace Event
     {
         return left_mouse_button_state == ButtonState::PRESSED;
     }
+        
+    bool EventService::pressedAKey() 
+    { 
+        return A_button_state == ButtonState::HELD; 
+    }
 
     void EventService::updateMouseButtonsState(ButtonState& current_button_state, sf::Mouse::Button mouse_button)
     {
         if (sf::Mouse::isButtonPressed(mouse_button))
+        {
+            switch (current_button_state)
+            {
+            case ButtonState::RELEASED:
+                current_button_state = ButtonState::PRESSED;
+                break;
+            case ButtonState::PRESSED:
+                current_button_state = ButtonState::HELD;
+                break;
+            }
+        }
+        else
+        {
+            current_button_state = ButtonState::RELEASED;
+        }
+    }
+
+    void EventService::updateKeyboardButtonsState(ButtonState& current_button_state, sf::Keyboard::Key keyboard_button)
+    {
+        if (sf::Keyboard::isKeyPressed(keyboard_button))
         {
             switch (current_button_state)
             {

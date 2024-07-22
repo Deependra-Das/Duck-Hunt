@@ -44,6 +44,7 @@ namespace Player
 		void decreasePlayerLive();
 		void decreasePlayerAmmo();
 		inline void increaseDucksShot(int val) { PlayerModel::ducks_shot += val; }
+		void resetPowerup() { PlayerModel::radial_shot = 1; PlayerModel::is_radial_shot_activated = false; }
 
 	};
 }

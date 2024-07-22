@@ -32,14 +32,17 @@ namespace UI
             foreground_image = new ImageView();
             player_health_image = new ImageView();
             player_ammo_image = new ImageView();
+            powerup_aimed_shot_image = new ImageView();
             score_text = new TextView();
             level_text = new TextView();
+            powerup_count_text = new TextView();
         }
 
         void GameplayUIController::initializeImage()
         {
             player_health_image->initialize(Config::player_texture_path, player_sprite_width, player_sprite_height, sf::Vector2f(0, 0));
             player_ammo_image->initialize(Config::ammo_texture_path, ammo_sprite_width, ammo_sprite_height, sf::Vector2f(0, 0));
+            powerup_aimed_shot_image->initialize(Config::crosshair_texture_path, ammo_sprite_width, ammo_sprite_height, sf::Vector2f(0, 0));
         }
 
         void GameplayUIController::initializeForegroundImage()
@@ -55,11 +58,15 @@ namespace UI
             
             sf::String level_header_string = "LEVEL " + std::to_string(ServiceLocator::getInstance()->getWaveService()->getLevelNumber());
             level_text->initialize(level_header_string, sf::Vector2f(level_text_x_position, level_text_y_position), FontType::Rajdhani, header_font_size, text_color);
+
+            sf::String powerup_header_string = "RADIAL SHOT : AVAILABLE";
+            powerup_count_text->initialize(powerup_header_string, sf::Vector2f(powerup_text_x_position, powerup_text_y_position), FontType::Rajdhani, small_font_size, text_color);
         }
 
         void GameplayUIController::update()
         {
             updateScoreText();
+            updatePowerupCountText();
 
             if (level_header_active == true)
             {
@@ -71,8 +78,10 @@ namespace UI
         {
             foreground_image->render();
             score_text->render();
+            powerup_count_text->render();
             drawPlayerLivesImage();
             drawPlayerAmmoImage();
+            drawPowerupImage();
 
             if (level_header_active == true)
             {
@@ -97,6 +106,22 @@ namespace UI
             level_text->setText(level_header_string);
         }
 
+        void GameplayUIController::updatePowerupCountText()
+        {
+            sf::String powerup_header_string = "RADIAL SHOT : AVAILABLE";
+
+            if (PlayerModel::radial_shot > 0)
+            {
+               powerup_header_string = "RADIAL SHOT : AVAILABLE";
+            }
+            else 
+            {
+                powerup_header_string = "RADIAL SHOT : ALREADY USED";
+            }
+         
+            powerup_count_text->setText(powerup_header_string);
+        }
+
         void GameplayUIController::drawPlayerLivesImage()
         {
             sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicsService()->getGameWindow();
@@ -117,6 +142,15 @@ namespace UI
                 player_ammo_image->setPosition(sf::Vector2f(player_ammo_x_offset + (i * player_ammo_spacing), player_ammo_y_offset));
                 player_ammo_image->render();
             }
+        }
+
+        void GameplayUIController::drawPowerupImage()
+        {
+            sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicsService()->getGameWindow();
+            powerup_aimed_shot_image->setPosition(sf::Vector2f(powerup_x_offset, player_ammo_y_offset));
+            powerup_aimed_shot_image->setImageAlpha(PlayerModel::radial_shot > 0 ? 128 : 50);
+            powerup_aimed_shot_image->render();
+
         }
 
         void GameplayUIController::destroy()
