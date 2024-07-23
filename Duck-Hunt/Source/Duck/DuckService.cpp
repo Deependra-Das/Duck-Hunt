@@ -146,7 +146,7 @@ namespace Duck
 
 		for (int i = 0; i < duck_list.size(); i++)
 		{
-			if (inRangeDucks(position, duck_list[i]->getDuckPosition(), 500))
+			if (inRangeDucks(position, duck_list[i]->getDuckPosition(), 200))
 			{
 				if (duck_list[i]->getDuckType() == DuckType::BLACK)
 				{

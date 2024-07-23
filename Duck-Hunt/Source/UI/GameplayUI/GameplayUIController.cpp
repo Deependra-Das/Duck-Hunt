@@ -59,7 +59,7 @@ namespace UI
             sf::String level_header_string = "LEVEL " + std::to_string(ServiceLocator::getInstance()->getWaveService()->getLevelNumber());
             level_text->initialize(level_header_string, sf::Vector2f(level_text_x_position, level_text_y_position), FontType::Rajdhani, header_font_size, text_color);
 
-            sf::String powerup_header_string = "RADIAL SHOT : AVAILABLE";
+            sf::String powerup_header_string = "PRESS A FOR RADIAL SHOT";
             powerup_count_text->initialize(powerup_header_string, sf::Vector2f(powerup_text_x_position, powerup_text_y_position), FontType::Rajdhani, small_font_size, text_color);
         }
 
@@ -112,7 +112,7 @@ namespace UI
 
             if (PlayerModel::radial_shot > 0)
             {
-               powerup_header_string = "RADIAL SHOT : AVAILABLE";
+               powerup_header_string = "PRESS A FOR RADIAL SHOT";
             }
             else 
             {
