@@ -36,6 +36,8 @@ namespace Duck
 		DuckType getDuckType();
 		DuckState getDuckState();
 
+		void setDuckState(DuckState state);
+
 		const sf::Sprite& getDuckSprite();
 	};
 }

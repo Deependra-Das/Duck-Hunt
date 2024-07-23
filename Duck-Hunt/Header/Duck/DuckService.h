@@ -12,8 +12,6 @@ namespace Duck
 	private:
 		std::vector<DuckController*> duck_list;
 		std::vector<DuckController*> flagged_duck_list;
-		const float spawn_interval = 2.0f;
-		float spawn_timer;
 
 		DuckController* createDuck(DuckType enemy_type);
 

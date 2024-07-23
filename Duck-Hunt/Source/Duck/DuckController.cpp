@@ -86,4 +86,8 @@ namespace Duck
 		ServiceLocator::getInstance()->getDuckService()->destroyDuck(this);
 	}
 
+	void DuckController::setDuckState(DuckState state)
+	{
+		duck_model->setDuckState(state);
+	}
 }

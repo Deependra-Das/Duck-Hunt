@@ -11,7 +11,6 @@ namespace Duck
         private:
 
             const float black_duck_horizontal_movement_speed = 250.0f;
-            float red_duck_rate_of_fire = 2.0f;
 
             void move() override;
             void movelLeftDown();

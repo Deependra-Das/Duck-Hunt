@@ -49,7 +49,7 @@ namespace Player
 
 		if (PlayerModel::is_radial_shot_activated == true && PlayerModel::radial_shot > 0)
 		{
-			mouseCoord.x -= 250; mouseCoord.y -= 250;
+			mouseCoord.x -= 125; mouseCoord.y -= 125;
 			player_model->setPlayerPosition(mouseCoord);
 		}
 

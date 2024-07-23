@@ -93,32 +93,34 @@ namespace Duck
 	void DuckService::reset()
 	{
 		destroy();
-		spawn_timer = 0.0f;
 	}
 
 
 	int DuckService::pointClickedOnDuck(sf::Vector2f mouse_position)
 	{
 		int duck_shot = 0, b_duck_shot=0, r_duck_shot=0;
-		int score = 0; sf::Vector2f red_duck_position= sf::Vector2f(- 1, -1);
+		int score = 0; sf::Vector2f red_duck_position= sf::Vector2f(- 1, -1); sf::Vector2f black_duck_position = sf::Vector2f(-1, -1);
 
 		for (int i = 0; i < duck_list.size(); i++)
 		{
 			if (duck_list[i]->getDuckSprite().getGlobalBounds().contains(mouse_position))
 			{
-				if (duck_list[i]->getDuckType() == DuckType::RED)
+				if (duck_list[i]->getDuckType() == DuckType::RED && duck_list[i]->getDuckState() == DuckState::FLYING)
 				{
 					r_duck_shot++;
-					ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(duck_list[i]->getDuckPosition(), Animation::AnimationType::RED_DUCK_FALL, MovementDirection::DOWN);
+					duck_list[i]->setDuckState(DuckState::DEAD);
 					red_duck_position = duck_list[i]->getDuckPosition();
 					destroyDuck(duck_list[i]);
+					ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(red_duck_position, Animation::AnimationType::RED_DUCK_FALL, MovementDirection::DOWN);
 				
 				}
-				else if (duck_list[i]->getDuckType() == DuckType::BLACK)
+				else if (duck_list[i]->getDuckType() == DuckType::BLACK && duck_list[i]->getDuckState() == DuckState::FLYING)
 				{
 					b_duck_shot++;
-					ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(duck_list[i]->getDuckPosition(), Animation::AnimationType::BLACK_DUCK_FALL, MovementDirection::DOWN);
+					duck_list[i]->setDuckState(DuckState::DEAD);
+					black_duck_position = duck_list[i]->getDuckPosition();
 					destroyDuck(duck_list[i]);
+					ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(black_duck_position, Animation::AnimationType::BLACK_DUCK_FALL, MovementDirection::DOWN);
 				}
 			}
 			
@@ -140,7 +142,7 @@ namespace Duck
 
 	int DuckService::killNearbyDucks(sf::Vector2f position)
 	{
-		int duck_shot = 0;
+		int duck_shot = 0; sf::Vector2f black_duck_position = sf::Vector2f(-1, -1);
 
 		for (int i = 0; i < duck_list.size(); i++)
 		{
@@ -149,8 +151,10 @@ namespace Duck
 				if (duck_list[i]->getDuckType() == DuckType::BLACK)
 				{
 					duck_shot++;
-					ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(duck_list[i]->getDuckPosition(), Animation::AnimationType::BLACK_DUCK_FALL, MovementDirection::DOWN);
+					duck_list[i]->setDuckState(DuckState::DEAD);
+					black_duck_position = duck_list[i]->getDuckPosition();
 					destroyDuck(duck_list[i]);
+					ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(black_duck_position, Animation::AnimationType::BLACK_DUCK_FALL, MovementDirection::DOWN);
 				}
 					
 			}
@@ -163,25 +167,28 @@ namespace Duck
 	int DuckService::radialClickOnDuck(sf::Vector2f mouse_position)
 	{
 		int duck_shot = 0, b_duck_shot = 0, r_duck_shot = 0;
-		int score = 0; sf::Vector2f red_duck_position = sf::Vector2f(-1, -1);
+		int score = 0; sf::Vector2f red_duck_position = sf::Vector2f(-1, -1); sf::Vector2f black_duck_position = sf::Vector2f(-1, -1);
 
 		for (int i = 0; i < duck_list.size(); i++)
 		{
-			if (inRangeDucks(mouse_position, duck_list[i]->getDuckPosition(),500))
+			if (inRangeDucks(mouse_position, duck_list[i]->getDuckPosition(),200))
 			{
-				if (duck_list[i]->getDuckType() == DuckType::RED)
+				if (duck_list[i]->getDuckType() == DuckType::RED && duck_list[i]->getDuckState()==DuckState::FLYING)
 				{
 					r_duck_shot++;
-				//	ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(duck_list[i]->getDuckPosition(), Animation::AnimationType::RED_DUCK_FALL, MovementDirection::DOWN);
+					duck_list[i]->setDuckState(DuckState::DEAD);
 					red_duck_position = duck_list[i]->getDuckPosition();
 					destroyDuck(duck_list[i]);
+					ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(red_duck_position, Animation::AnimationType::RED_DUCK_FALL, MovementDirection::DOWN);
 
 				}
-				else if (duck_list[i]->getDuckType() == DuckType::BLACK)
+				else if (duck_list[i]->getDuckType() == DuckType::BLACK && duck_list[i]->getDuckState() == DuckState::FLYING)
 				{
 					b_duck_shot++;
-				//	ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(duck_list[i]->getDuckPosition(), Animation::AnimationType::BLACK_DUCK_FALL, MovementDirection::DOWN);
+					duck_list[i]->setDuckState(DuckState::DEAD);
+					black_duck_position = duck_list[i]->getDuckPosition();
 					destroyDuck(duck_list[i]);
+					ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(black_duck_position, Animation::AnimationType::BLACK_DUCK_FALL, MovementDirection::DOWN);
 				}
 			}
 

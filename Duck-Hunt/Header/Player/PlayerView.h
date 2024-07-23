@@ -10,8 +10,8 @@ namespace Player
 	class PlayerView
 	{
 	private:
-		const float player_sprite_width = 500.f;
-		const float player_sprite_height = 500.f;
+		const float player_sprite_width = 250.f;
+		const float player_sprite_height = 250.f;
 
 		PlayerController* player_controller;
 		UI::UIElement::ImageView* player_image;

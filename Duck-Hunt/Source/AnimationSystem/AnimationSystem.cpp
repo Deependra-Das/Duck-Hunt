@@ -18,7 +18,7 @@ namespace Animation
 
 	AnimationSystem::~AnimationSystem()
 	{
-		delete(animation_image);
+		
 	}
 
 	void AnimationSystem::initialize(sf::Vector2f position, MovementDirection movement)
@@ -75,6 +75,7 @@ namespace Animation
 
 	void AnimationSystem::destroy()
 	{
+		delete(animation_image);
 		ServiceLocator::getInstance()->getAnimationService()->destroyAnimationSystem(this);
 	}
 
