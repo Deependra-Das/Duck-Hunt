@@ -24,6 +24,8 @@ namespace Global
 
 	const sf::String Config::duck_texture_path = "Assets/Textures/duck_sprite_sheet.png";
 
+	const sf::String Config::dog_texture_path = "Assets/Textures/dog_sprite_sheet.png";
+
 	const sf::String Config::crosshair_texture_path = "Assets/Textures/crosshair.png";
 
 	const sf::String Config::player_texture_path = "Assets/Textures/player_health.png";
@@ -41,7 +43,7 @@ namespace Global
 
 
 
-	const sf::String Config::background_music_path = "Assets/Audio/background_music.mp3";
+	const sf::String Config::background_music_path = "Assets/Audio/background_music.wav";
 
 	const sf::String Config::button_click_sound_path = "Assets/Audio/button_click_sound.wav";
 

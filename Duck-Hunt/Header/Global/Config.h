@@ -18,6 +18,7 @@ namespace Global
 		static const sf::String game_over_texture_path;
 		static const sf::String foreground_texture_path;
 		static const sf::String duck_texture_path;
+		static const sf::String dog_texture_path;
 		static const sf::String crosshair_texture_path;
 		static const sf::String player_texture_path;
 		static const sf::String ammo_texture_path;

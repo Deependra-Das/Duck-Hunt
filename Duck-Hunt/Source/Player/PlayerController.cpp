@@ -49,7 +49,7 @@ namespace Player
 
 		if (PlayerModel::is_radial_shot_activated == true && PlayerModel::radial_shot > 0)
 		{
-			mouseCoord.x -= 125; mouseCoord.y -= 125;
+			mouseCoord.x -= 100; mouseCoord.y -= 100;
 			player_model->setPlayerPosition(mouseCoord);
 		}
 
@@ -104,8 +104,8 @@ namespace Player
 
 	void PlayerController::processBulletFire(sf::Vector2f mouse_position)
 	{
-		if (PlayerModel::ammo_count > 0)
-		{	
+		/*if (PlayerModel::ammo_count > 0)
+		{*/	
 			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BULLET_FIRE);
 
 		if (PlayerModel::is_radial_shot_activated && PlayerModel::radial_shot > 0)
@@ -121,8 +121,8 @@ namespace Player
 		}
 	
 	
-			decreasePlayerAmmo();
-		}	
+		/*	decreasePlayerAmmo();
+		}*/	
 	}
 
 	void PlayerController::decreasePlayerLive()

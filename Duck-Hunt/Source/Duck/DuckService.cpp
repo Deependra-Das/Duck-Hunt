@@ -95,7 +95,6 @@ namespace Duck
 		destroy();
 	}
 
-
 	int DuckService::pointClickedOnDuck(sf::Vector2f mouse_position)
 	{
 		int duck_shot = 0, b_duck_shot=0, r_duck_shot=0;
@@ -108,7 +107,7 @@ namespace Duck
 				if (duck_list[i]->getDuckType() == DuckType::RED && duck_list[i]->getDuckState() == DuckState::FLYING)
 				{
 					r_duck_shot++;
-					duck_list[i]->setDuckState(DuckState::DEAD);
+					duck_list[i]->setDuckState(DuckState::DEAD);					
 					red_duck_position = duck_list[i]->getDuckPosition();
 					destroyDuck(duck_list[i]);
 					ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(red_duck_position, Animation::AnimationType::RED_DUCK_FALL, MovementDirection::DOWN);
@@ -118,7 +117,7 @@ namespace Duck
 				{
 					b_duck_shot++;
 					duck_list[i]->setDuckState(DuckState::DEAD);
-					black_duck_position = duck_list[i]->getDuckPosition();
+					black_duck_position = duck_list[i]->getDuckPosition();				
 					destroyDuck(duck_list[i]);
 					ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(black_duck_position, Animation::AnimationType::BLACK_DUCK_FALL, MovementDirection::DOWN);
 				}
@@ -217,6 +216,5 @@ namespace Duck
 
 		return x;
 	}
-
 
 }

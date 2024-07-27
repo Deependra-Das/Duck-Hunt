@@ -10,9 +10,10 @@ namespace Wave
 	using namespace Global;
 	using namespace Player;
 	using namespace Main;
-
+	using namespace Duck;
 	int WaveService::ducks_shot_in_current_wave;
 	WaveType WaveService::current_wave_type;
+	WaveStatus WaveService::current_wave_status;
 
 	WaveService::WaveService()
 	{
@@ -26,26 +27,46 @@ namespace Wave
 	void WaveService::initialize() 
 	{ 
 		ducks_shot_in_current_wave = 0;
-		start_delay = sf::seconds(5);
-		level_delay = sf::seconds(0.5);
+		wave_start_delay = sf::seconds(10);
+		display_status_duration = sf::seconds(2);
+		display_level_duration = sf::seconds(2);
+		display_status_delay = sf::seconds(3);
+		display_level_delay = sf::seconds(5);
 		start_new_wave = true;
-		activateLevelHeader();
 		current_wave_type = WaveType::EASY;
+		current_wave_status= WaveStatus::UNPLAYED;
 	}
 
 	void WaveService::update()
 	{
-		if (level_clock.getElapsedTime() >= level_delay && start_new_wave==false)
+		if (wave_clock.getElapsedTime() > display_status_delay && start_new_wave == true)
+		{
+			activateStatusHeader();
+		}
+
+		if (wave_clock.getElapsedTime() > (display_status_delay + display_status_duration) && start_new_wave == true)
+		{
+			deactivateStatusHeader();
+		}
+
+		if (wave_clock.getElapsedTime() > display_level_delay && start_new_wave == true)
+		{
+			activateLevelHeader();
+		}
+
+		if (wave_clock.getElapsedTime() > (display_level_delay+display_level_duration) && start_new_wave == true)
 		{
 			deactivateLevelHeader();
 		}
 
-		for (WaveSystem* wave_system : wave_system_list)
-			wave_system->update();
-		if (start_new_wave && clock.getElapsedTime() >= start_delay)
+		if (start_new_wave==true && wave_clock.getElapsedTime() >= wave_start_delay)
 		{
+			ServiceLocator::getInstance()->getGameplayService()->changeBackgroundColor(Config::background_blue_texture_path);
 			spawnWaveSystem(current_wave_type);
 		}
+
+		for (WaveSystem* wave_system : wave_system_list)
+			wave_system->update();
 
 		destroyFlaggedWaveSystem();
 	}
@@ -58,13 +79,12 @@ namespace Wave
 
 	void WaveService::spawnWaveSystem(WaveType Wave_type)
 	{
-		level_clock.restart();
-		ServiceLocator::getInstance()->getGameplayService()->changeBackgroundColor(Config::background_blue_texture_path);
 		WaveSystem* wave_system = new WaveSystem(getWaveSystemConfig(Wave_type));
 		wave_system->initialize();
 		wave_system_list.push_back(wave_system);
 		ServiceLocator::getInstance()->getPlayerService()->resetPowerup();
 		start_new_wave = false;
+		current_wave_status = WaveStatus::UNPLAYED;
 	}
 
 	void WaveService::destroyWaveSystem(WaveSystem* Wave_system)
@@ -83,18 +103,23 @@ namespace Wave
 		if (PlayerModel::player_lives > 1)
 		{
 			if (ducks_shot_in_current_wave < getWaveSystemConfig(current_wave_type).total_birds_count)
-			{					
+			{
+				current_wave_status = WaveStatus::LOST;
 				ServiceLocator::getInstance()->getGameplayService()->changeBackgroundColor(Config::background_red_texture_path);
+				ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(sf::Vector2f(880,825), Animation::AnimationType::DOG_MOCKING, MovementDirection::UPDOWN);
 				ServiceLocator::getInstance()->getPlayerService()->decreasePlayerHealth();
 				ducks_shot_in_current_wave = 0;
 			}
 			else
 			{
+				current_wave_status = WaveStatus::WON;
+
 				if (static_cast<int>(current_wave_type) < 2)
 				{
+					
 					ducks_shot_in_current_wave = 0;
 					current_wave_type = static_cast<WaveType>(static_cast<int>(current_wave_type) + 1);
-					activateLevelHeader();
+				
 				}
 				else 
 				{
@@ -103,11 +128,13 @@ namespace Wave
 				}
 				
 			}
-			clock.restart();
+			start_new_wave = true;
+			wave_clock.restart();
 		}
 		else 
 		{
 			ServiceLocator::getInstance()->getPlayerService()->decreasePlayerHealth();
+			current_wave_status = WaveStatus::LOST;
 			start_new_wave = false;
 			GameService::setGameState(GameState::GAMEOVER);
 		}
@@ -175,6 +202,34 @@ namespace Wave
 	void WaveService::deactivateLevelHeader()
 	{
 		UI::GameplayUI::GameplayUIController::level_header_active = false;
+	}
+
+	void WaveService::activateStatusHeader()
+	{
+		UI::GameplayUI::GameplayUIController::status_header_active = true;
+	}
+
+	void WaveService::deactivateStatusHeader()
+	{
+		UI::GameplayUI::GameplayUIController::status_header_active = false;
+	}
+
+	sf::String WaveService::getWaveStatus()
+	{
+		sf::String message = "";
+		if (current_wave_status == WaveStatus::WON)
+		{
+			return message = "Nice Shooting\nWell Done";
+		}
+		else if (current_wave_status == WaveStatus::LOST)
+		{
+			return message = "You failed\nTry Again";
+		}
+		else
+		{
+			return message = "";
+		}
+		
 	}
 
 }

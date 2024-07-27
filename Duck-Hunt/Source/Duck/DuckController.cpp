@@ -3,12 +3,13 @@
 #include "../../Header/Duck/DuckModel.h"
 #include "../../Header/Duck/DuckConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
+#include "../../header/UI/UIElement/AnimatedImageView.h"
 
 namespace Duck
 {
 	using namespace Global;
 	using namespace Time;
-
+	using namespace UI::UIElement;
 
 	DuckController::DuckController(DuckType type)
 	{
@@ -89,5 +90,10 @@ namespace Duck
 	void DuckController::setDuckState(DuckState state)
 	{
 		duck_model->setDuckState(state);
+	}
+
+	void DuckController::updateDuckAnimation(AnimationType a_type, DuckType d_type)
+	{
+		duck_view->updateDuckAnimation(a_type, d_type);
 	}
 }

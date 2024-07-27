@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "../../Header/Duck/DuckConfig.h"
+#include "../../header/UI/UIElement/AnimatedImageView.h"
 
 namespace Duck
 {
@@ -39,5 +40,7 @@ namespace Duck
 		void setDuckState(DuckState state);
 
 		const sf::Sprite& getDuckSprite();
+
+		void updateDuckAnimation(UI::UIElement::AnimationType a_type, DuckType d_type);
 	};
 }

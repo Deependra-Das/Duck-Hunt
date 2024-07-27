@@ -13,6 +13,14 @@ namespace Wave
 		HARD,
 	};
 
+	enum class WaveStatus
+	{
+		UNPLAYED,
+		WON,
+		LOST,
+
+	};
+
 	class WaveService
 	{
 	private:
@@ -20,11 +28,14 @@ namespace Wave
 		std::vector<WaveSystem*> flagged_wave_system_list;
 		static int ducks_shot_in_current_wave;
 		static WaveType current_wave_type;
+		static WaveStatus current_wave_status;
 		bool start_new_wave;
-		sf::Clock clock;
-		sf::Clock level_clock;
-		sf::Time start_delay;
-		sf::Time level_delay;
+		sf::Clock wave_clock;
+		sf::Time wave_start_delay;
+		sf::Time display_status_duration;
+		sf::Time display_level_duration;
+		sf::Time display_status_delay;
+		sf::Time display_level_delay;
 		WaveSystemConfig getWaveSystemConfig(WaveType wave_type);
 		void destroyFlaggedWaveSystem();
 		void destroy();
@@ -47,5 +58,8 @@ namespace Wave
 		int getLevelNumber();
 		void activateLevelHeader();
 		void deactivateLevelHeader();
+		void activateStatusHeader();
+		void deactivateStatusHeader();
+		sf::String getWaveStatus();
 	};
 }

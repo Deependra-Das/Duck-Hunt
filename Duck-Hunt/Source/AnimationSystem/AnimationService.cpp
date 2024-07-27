@@ -48,15 +48,21 @@ namespace Animation
 	{
 		switch (animation_type)
 		{
+	
 		case Animation::AnimationType::BLACK_DUCK_FALL:
 		{
-			const AnimationSystemConfig b_duckfall_animation_config(Global::Config::duck_texture_path, 632.f, 338.f, 73.f, 84.5f, 3, 0.2f, 0, 6);
+			const AnimationSystemConfig b_duckfall_animation_config(Global::Config::duck_texture_path, 632.f, 338.f, 73.f, 84.5f, 2, 0.2f, 1.f, 0, 7);
 			return b_duckfall_animation_config;
 		}
 		case Animation::AnimationType::RED_DUCK_FALL:
 		{
-			const AnimationSystemConfig r_duckfall_animation_config(Global::Config::duck_texture_path, 632.f, 338.f, 73.f, 84.5f, 3, 0.2f, 1, 6);
+			const AnimationSystemConfig r_duckfall_animation_config(Global::Config::duck_texture_path, 632.f, 338.f, 72.f, 84.5f, 2, 0.2f, 1.0f, 1, 7);
 			return r_duckfall_animation_config;
+		}
+		case Animation::AnimationType::DOG_MOCKING:
+		{
+			const AnimationSystemConfig dock_mocking_animation_config(Global::Config::dog_texture_path, 1264.f, 1648.f, 116.f, 216.f, 2, 0.2f, 5.0f, 5, 0);
+			return dock_mocking_animation_config;
 		}
 
 		}

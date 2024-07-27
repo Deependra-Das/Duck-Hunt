@@ -73,14 +73,13 @@ namespace UI
                 current_frame = col = 0; tile_width = 72.f; tile_height = 84.5f; number_of_frames = 3;
                 break;
             }
-   
-            case AnimationType::GLIDING:
+
+            case AnimationType::DUCKSHOT:
             {
-                current_frame = col = 3; tile_width = 72.f; tile_height = 84.5f; number_of_frames = 3;
+                current_frame = col = 6; tile_width = 72.f; tile_height = 84.5f; number_of_frames = 1;
                 break;
             }
-
-              
+                 
             }
         }
 

@@ -16,6 +16,8 @@ namespace UI
 
             friend void Wave::WaveService::activateLevelHeader();
             friend void Wave::WaveService::deactivateLevelHeader();
+            friend void Wave::WaveService::activateStatusHeader();
+            friend void Wave::WaveService::deactivateStatusHeader();
 
             const int small_font_size = 20;
             const int font_size = 24;
@@ -45,6 +47,7 @@ namespace UI
             const float powerup_x_offset = 200.f;
 
             static bool level_header_active;
+            static bool status_header_active;
             const sf::Color text_color = sf::Color::White;
 
             const float foreground_image_width = 1920.0f;
@@ -56,7 +59,10 @@ namespace UI
             UI::UIElement::ImageView* powerup_aimed_shot_image;
             UI::UIElement::TextView* score_text;
             UI::UIElement::TextView* level_text;
+            UI::UIElement::TextView* status_text;
             UI::UIElement::TextView* powerup_count_text;
+
+            UI::UIElement::ImageView* dog_image;
 
             float spacing;
 
@@ -77,6 +83,7 @@ namespace UI
 
             void updateScoreText();
             void updateLevelText();
+            void updateStatusText();
             void drawPlayerLivesImage();
             void drawPlayerAmmoImage();
             void drawPowerupImage();

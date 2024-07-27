@@ -12,16 +12,19 @@ namespace Animation
 		AnimationSystemConfig animation_system_config;
 		sf::Vector2f animation_position;
 		UI::UIElement::ImageView* animation_image;
-		sf::Clock clock;
+		sf::Clock anim_clock;
+		sf::Clock frame_clock;
+		sf::Clock movement_clock;
 		sf::Time frame_time;
 		int current_frame;
-		int frame_counter;
+		sf::Time total_duration;
 		float vertical_movement_speed = 800.f;
 		Duck::MovementDirection direction;
 		void createUIElements();
 		void initializeImage();
 		void move();
 		void moveDown();
+		void moveUp();
 
 	public:
 		AnimationSystem(AnimationSystemConfig config);
