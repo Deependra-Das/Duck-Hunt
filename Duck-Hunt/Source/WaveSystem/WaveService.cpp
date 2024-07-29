@@ -28,8 +28,8 @@ namespace Wave
 	{ 
 		ducks_shot_in_current_wave = 0;
 		wave_start_delay = sf::seconds(10);
-		display_status_duration = sf::seconds(2);
-		display_level_duration = sf::seconds(2);
+		display_status_duration = sf::seconds(1);
+		display_level_duration = sf::seconds(1);
 		display_status_delay = sf::seconds(3);
 		display_level_delay = sf::seconds(5);
 		start_new_wave = true;
@@ -42,6 +42,7 @@ namespace Wave
 		if (wave_clock.getElapsedTime() > display_status_delay && start_new_wave == true)
 		{
 			activateStatusHeader();
+			activateDogAnimation();
 		}
 
 		if (wave_clock.getElapsedTime() > (display_status_delay + display_status_duration) && start_new_wave == true)
@@ -62,6 +63,7 @@ namespace Wave
 		if (start_new_wave==true && wave_clock.getElapsedTime() >= wave_start_delay)
 		{
 			ServiceLocator::getInstance()->getGameplayService()->changeBackgroundColor(Config::background_blue_texture_path);
+			deactivateDogAnimation();
 			spawnWaveSystem(current_wave_type);
 		}
 
@@ -230,6 +232,17 @@ namespace Wave
 			return message = "";
 		}
 		
+	}
+
+
+	void WaveService::activateDogAnimation()
+	{
+		UI::GameplayUI::GameplayUIController::dog_animation_active = true;
+	}
+
+	void WaveService::deactivateDogAnimation()
+	{
+		UI::GameplayUI::GameplayUIController::dog_animation_active = false;
 	}
 
 }

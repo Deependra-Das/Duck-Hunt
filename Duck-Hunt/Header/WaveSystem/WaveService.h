@@ -61,5 +61,7 @@ namespace Wave
 		void activateStatusHeader();
 		void deactivateStatusHeader();
 		sf::String getWaveStatus();
+		void activateDogAnimation();
+		void deactivateDogAnimation();
 	};
 }

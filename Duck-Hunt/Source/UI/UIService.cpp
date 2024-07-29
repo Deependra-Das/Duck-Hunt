@@ -106,4 +106,8 @@ namespace UI
 		delete(game_over_ui_controller);
 	}
 
+	void UIService::updateDogAnimation(UI::UIElement::AnimationType a_type)
+	{
+		gameplay_ui_controller->updateDogAnimation(a_type);
+	}
 }

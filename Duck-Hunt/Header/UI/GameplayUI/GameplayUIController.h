@@ -5,6 +5,7 @@
 #include "../../header/UI/UIElement/ButtonView.h"
 #include "../../header/UI/UIElement/TextView.h"
 #include "../../header/WaveSystem/WaveService.h"
+#include "../../header/UI/UIElement/AnimatedImageView.h"
 
 namespace UI
 {
@@ -18,6 +19,8 @@ namespace UI
             friend void Wave::WaveService::deactivateLevelHeader();
             friend void Wave::WaveService::activateStatusHeader();
             friend void Wave::WaveService::deactivateStatusHeader();
+            friend void Wave::WaveService::activateDogAnimation();
+            friend void Wave::WaveService::deactivateDogAnimation();
 
             const int small_font_size = 20;
             const int font_size = 24;
@@ -48,10 +51,16 @@ namespace UI
 
             static bool level_header_active;
             static bool status_header_active;
+            static bool dog_animation_active;
             const sf::Color text_color = sf::Color::White;
 
             const float foreground_image_width = 1920.0f;
             const float foreground_image_height = 1080.0f;
+
+            const float dog_sprite_width = 1264.f;
+            const float dog_sprite_height = 1648.f;
+            sf::Vector2f dog_current_position=sf::Vector2f(-100,750);
+            float dog_movement_speed = 150.f;
 
             UI::UIElement::ImageView* foreground_image;
             UI::UIElement::ImageView* player_health_image;
@@ -62,7 +71,8 @@ namespace UI
             UI::UIElement::TextView* status_text;
             UI::UIElement::TextView* powerup_count_text;
 
-            UI::UIElement::ImageView* dog_image;
+            UI::UIElement::AnimatedImageView* dog_image;
+            Duck::MovementDirection dog_direction;
 
             float spacing;
 
@@ -71,6 +81,9 @@ namespace UI
             void initializeForegroundImage();
             void initializeText();
             void destroy();
+            void moveDog();
+            void moveRight();
+            void moveUpRight();
 
         public:
             GameplayUIController();
@@ -88,6 +101,7 @@ namespace UI
             void drawPlayerAmmoImage();
             void drawPowerupImage();
             void updatePowerupCountText();
+            void updateDogAnimation(UI::UIElement::AnimationType a_type);
         };
     }
 }

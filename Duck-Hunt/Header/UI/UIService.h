@@ -31,5 +31,7 @@ namespace UI
 		void update();
 		void render();
 		void showScreen();
+
+		void updateDogAnimation(UI::UIElement::AnimationType a_type);
 	};
 }

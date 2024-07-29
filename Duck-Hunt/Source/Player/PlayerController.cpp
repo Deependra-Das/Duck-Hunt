@@ -104,8 +104,8 @@ namespace Player
 
 	void PlayerController::processBulletFire(sf::Vector2f mouse_position)
 	{
-		/*if (PlayerModel::ammo_count > 0)
-		{*/	
+		if (PlayerModel::ammo_count > 0)
+		{	
 			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BULLET_FIRE);
 
 		if (PlayerModel::is_radial_shot_activated && PlayerModel::radial_shot > 0)
@@ -119,10 +119,8 @@ namespace Player
 			PlayerModel::player_score += ServiceLocator::getInstance()->getDuckService()->pointClickedOnDuck(mouse_position);
 
 		}
-	
-	
-		/*	decreasePlayerAmmo();
-		}*/	
+			decreasePlayerAmmo();
+		}	
 	}
 
 	void PlayerController::decreasePlayerLive()

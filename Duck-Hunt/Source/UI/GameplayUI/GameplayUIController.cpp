@@ -16,6 +16,7 @@ namespace UI
 
         bool GameplayUIController::level_header_active;
         bool GameplayUIController::status_header_active;
+        bool GameplayUIController::dog_animation_active;
 
         GameplayUIController::GameplayUIController() { createUIElements(); }
 
@@ -28,6 +29,8 @@ namespace UI
             initializeText();
             level_header_active=false;
             status_header_active = false;
+            dog_animation_active = false;
+            dog_direction = Duck::MovementDirection::RIGHT;
         }
 
         void GameplayUIController::createUIElements()
@@ -40,7 +43,7 @@ namespace UI
             level_text = new TextView();
             powerup_count_text = new TextView();
             status_text = new TextView();
-            dog_image = new ImageView();
+            dog_image = new AnimatedImageView();
         }
 
         void GameplayUIController::initializeImage()
@@ -49,8 +52,8 @@ namespace UI
             player_ammo_image->initialize(Config::ammo_texture_path, ammo_sprite_width, ammo_sprite_height, sf::Vector2f(0, 0));
             powerup_aimed_shot_image->initialize(Config::crosshair_texture_path, ammo_sprite_width, ammo_sprite_height, sf::Vector2f(0, 0));
 
-            dog_image->initialize(Config::dog_texture_path, 1264.f, 1648.f, sf::Vector2f(level_text_x_position, level_text_y_position));
-            dog_image->setTextureRect(sf::IntRect(0, 812, 150.f, 250.f));
+            dog_image->initialize(Config::dog_texture_path, dog_sprite_width, dog_sprite_height, dog_current_position);
+            updateDogAnimation(UI::UIElement::AnimationType::DOG_WALKING);
 
         }
 
@@ -88,6 +91,11 @@ namespace UI
             {
                 updateStatusText();
             }
+            if (dog_animation_active == true)
+            {
+                dog_image->update();
+                moveDog();
+            }         
         }
 
         void GameplayUIController::render()
@@ -107,15 +115,78 @@ namespace UI
             {
                 status_text->render();
             }
-       
+            if (dog_animation_active == true)
+            {
+                dog_image->render();
+            }
             
-           //dog_image->render();
         }
 
         void GameplayUIController::show()
         {
         }
 
+        void GameplayUIController::moveDog()
+        {
+            switch (dog_direction)
+            {
+            case::Duck::MovementDirection::RIGHT:
+                moveRight();
+                break;
+            case::Duck::MovementDirection::RIGHT_UP:
+                moveUpRight();
+                break;
+            }
+
+        }
+
+        void GameplayUIController::moveRight()
+        {
+            sf::Vector2f currentPosition = dog_current_position;
+            currentPosition.x += dog_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+
+            if (currentPosition.x >= 700.f)
+            {
+                updateDogAnimation(AnimationType::DOG_SNIFFING);
+            }
+            if (currentPosition.x >= 750.f)
+            {
+                updateDogAnimation(AnimationType::DOG_EXCITED);
+            }
+
+            if (currentPosition.x >= 800.f)
+            {
+                updateDogAnimation(AnimationType::DOG_JUMPING);
+               dog_direction = Duck::MovementDirection::RIGHT_UP;
+            }
+            else
+            {
+                dog_current_position = currentPosition;
+                dog_image->setPosition(dog_current_position);
+            }
+        }
+
+        void GameplayUIController::moveUpRight()
+        {
+            sf::Vector2f currentPosition = dog_current_position;
+            if (currentPosition.x >= 940.f)
+            {
+                printf(std::to_string(dog_current_position.x).c_str());
+                dog_current_position = sf::Vector2f(-101, 750);
+                dog_image->setPosition(dog_current_position);
+                updateDogAnimation(AnimationType::DOG_WALKING);
+                dog_direction = Duck::MovementDirection::RIGHT;
+          
+            }
+            else 
+            {   currentPosition.x += dog_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+                currentPosition.y -= dog_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+                dog_current_position = currentPosition;
+                dog_image->setPosition(dog_current_position);
+            }
+        
+
+        }
 
         void GameplayUIController::updateScoreText()
         {
@@ -180,6 +251,11 @@ namespace UI
             powerup_aimed_shot_image->setImageAlpha(PlayerModel::radial_shot > 0 ? 128 : 50);
             powerup_aimed_shot_image->render();
 
+        }
+
+        void GameplayUIController::updateDogAnimation(UI::UIElement::AnimationType a_type)
+        {
+            dog_image->playDogAnimation(a_type);
         }
 
         void GameplayUIController::destroy()
