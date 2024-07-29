@@ -23,6 +23,7 @@ namespace Duck
         RIGHT,
         LEFT,
         UP,
-        DOWN
+        DOWN,
+        UPDOWN
     };
 }

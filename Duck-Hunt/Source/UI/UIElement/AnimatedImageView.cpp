@@ -73,14 +73,48 @@ namespace UI
                 current_frame = col = 0; tile_width = 72.f; tile_height = 84.5f; number_of_frames = 3;
                 break;
             }
-   
-            case AnimationType::GLIDING:
+
+            case AnimationType::DUCKSHOT:
             {
-                current_frame = col = 3; tile_width = 72.f; tile_height = 84.5f; number_of_frames = 3;
+                current_frame = col = 6; tile_width = 72.f; tile_height = 84.5f; number_of_frames = 1;
+                break;
+            }
+                 
+            }
+        }
+
+        void AnimatedImageView::playDogAnimation(AnimationType a_type)
+        {
+            setAnimationType(a_type);
+            setDogAnimationConfig();
+            ImageView::show();
+        }
+
+        void AnimatedImageView::setDogAnimationConfig()
+        {
+            switch (animation_type)
+            {
+            case AnimationType::DOG_WALKING:
+            {
+                row = 0; current_frame = col = 0; tile_width = 195.f; tile_height = 200.f; number_of_frames = 4;
+                break;
+            }
+            case AnimationType::DOG_SNIFFING:
+            {
+                row = 1; current_frame = col = 0; tile_width = 190.f; tile_height = 200.f; number_of_frames = 2;
+                break;
+            }
+            case AnimationType::DOG_EXCITED:
+            {
+                row = 2; current_frame = col = 0; tile_width = 190.f; tile_height = 200.f; number_of_frames = 1;
+                break;
+            }
+            case AnimationType::DOG_JUMPING:
+            {
+                row = 3; current_frame = col = 0; tile_width = 130.f; tile_height = 200.f; number_of_frames = 2;
                 break;
             }
 
-              
             }
         }
 

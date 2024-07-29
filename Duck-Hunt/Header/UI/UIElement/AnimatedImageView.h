@@ -12,7 +12,11 @@ namespace UI
 		{
 			FLYING,
 			GLIDING,
-			DUCKSHOT
+			DUCKSHOT,
+			DOG_WALKING,
+			DOG_SNIFFING,
+			DOG_EXCITED,
+			DOG_JUMPING,
 		};
 
 		class AnimatedImageView :public ImageView
@@ -47,6 +51,9 @@ namespace UI
 			void render() override;
 
 			void playDuckAnimation(AnimationType a_type, Duck::DuckType d_type);
+
+			void playDogAnimation(AnimationType a_type);
+			void setDogAnimationConfig();
 
 		};
 	}

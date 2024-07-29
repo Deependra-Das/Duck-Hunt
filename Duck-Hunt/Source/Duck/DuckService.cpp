@@ -95,7 +95,6 @@ namespace Duck
 		destroy();
 	}
 
-
 	int DuckService::pointClickedOnDuck(sf::Vector2f mouse_position)
 	{
 		int duck_shot = 0, b_duck_shot=0, r_duck_shot=0;
@@ -108,7 +107,7 @@ namespace Duck
 				if (duck_list[i]->getDuckType() == DuckType::RED && duck_list[i]->getDuckState() == DuckState::FLYING)
 				{
 					r_duck_shot++;
-					duck_list[i]->setDuckState(DuckState::DEAD);
+					duck_list[i]->setDuckState(DuckState::DEAD);					
 					red_duck_position = duck_list[i]->getDuckPosition();
 					destroyDuck(duck_list[i]);
 					ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(red_duck_position, Animation::AnimationType::RED_DUCK_FALL, MovementDirection::DOWN);
@@ -118,7 +117,7 @@ namespace Duck
 				{
 					b_duck_shot++;
 					duck_list[i]->setDuckState(DuckState::DEAD);
-					black_duck_position = duck_list[i]->getDuckPosition();
+					black_duck_position = duck_list[i]->getDuckPosition();				
 					destroyDuck(duck_list[i]);
 					ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(black_duck_position, Animation::AnimationType::BLACK_DUCK_FALL, MovementDirection::DOWN);
 				}
@@ -134,6 +133,8 @@ namespace Duck
 		duck_shot = r_duck_shot + b_duck_shot;
 		score = (r_duck_shot * 200) + (b_duck_shot * 100);
 
+		if (duck_shot > 0) { playDogCatchBirdAnimation(duck_shot); }
+		
 		ServiceLocator::getInstance()->getPlayerService()->increaseDucksShot(duck_shot);
 		ServiceLocator::getInstance()->getWaveService()->updateDucksShot(duck_shot);
 		return score;
@@ -216,6 +217,25 @@ namespace Duck
 		bool x= (dx * dx + dy * dy) < (radius * radius);
 
 		return x;
+	}
+
+	void DuckService::playDogCatchBirdAnimation(int duck_shot)
+	{
+		for (int i = duck_shot; i > 0; i--)
+		{
+			if (i >= 3)
+			{
+				ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(sf::Vector2f(880, 825), Animation::AnimationType::DOG_CATCH_ONE, MovementDirection::UPDOWN);
+			}
+			else if (i == 2)
+			{
+				ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(sf::Vector2f(880, 825), Animation::AnimationType::DOG_CATCH_ONE, MovementDirection::UPDOWN);
+			}
+			else if (i == 1)
+			{
+				ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(sf::Vector2f(880, 825), Animation::AnimationType::DOG_CATCH_ONE, MovementDirection::UPDOWN);
+			}
+		}
 	}
 
 

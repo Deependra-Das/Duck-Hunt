@@ -38,5 +38,7 @@ namespace Duck
 		bool inRangeDucks(sf::Vector2f enemy1pos, sf::Vector2f enemy2pos, int radius);
 
 		int killNearbyDucks(sf::Vector2f position);
+
+		void playDogCatchBirdAnimation(int duck_shot);
 	};
 }

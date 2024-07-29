@@ -49,7 +49,7 @@ namespace Player
 
 		if (PlayerModel::is_radial_shot_activated == true && PlayerModel::radial_shot > 0)
 		{
-			mouseCoord.x -= 125; mouseCoord.y -= 125;
+			mouseCoord.x -= 100; mouseCoord.y -= 100;
 			player_model->setPlayerPosition(mouseCoord);
 		}
 
@@ -119,8 +119,6 @@ namespace Player
 			PlayerModel::player_score += ServiceLocator::getInstance()->getDuckService()->pointClickedOnDuck(mouse_position);
 
 		}
-	
-	
 			decreasePlayerAmmo();
 		}	
 	}

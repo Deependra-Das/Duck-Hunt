@@ -11,6 +11,11 @@ namespace Animation
 	{
 		BLACK_DUCK_FALL,
 		RED_DUCK_FALL,
+		DOG_MOCKING,
+		DOG_WALKING,
+		DOG_CATCH_ONE,
+		DOG_CATCH_TWO,
+		DOG_CATCH_THREE
 	};
 
 	class AnimationService
@@ -37,5 +42,6 @@ namespace Animation
 		void destroyAnimationSystem(AnimationSystem* animation_system);
 
 		void moveDown();
+		void moveUpDown();
 	};
 }

@@ -50,7 +50,6 @@ namespace UI
             sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicsService()->getGameWindow();
 
             background_image->initialize(Config::background_white_texture_path, game_window->getSize().x, game_window->getSize().y, sf::Vector2f(0, 0));
-            background_image->setImageAlpha(background_image_alpha);
         }
 
         void GameWinnerUIController::initializeGameWinnerImage()
