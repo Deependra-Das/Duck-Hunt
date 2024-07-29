@@ -133,6 +133,8 @@ namespace Duck
 		duck_shot = r_duck_shot + b_duck_shot;
 		score = (r_duck_shot * 200) + (b_duck_shot * 100);
 
+		if (duck_shot > 0) { playDogCatchBirdAnimation(duck_shot); }
+		
 		ServiceLocator::getInstance()->getPlayerService()->increaseDucksShot(duck_shot);
 		ServiceLocator::getInstance()->getWaveService()->updateDucksShot(duck_shot);
 		return score;
@@ -216,5 +218,25 @@ namespace Duck
 
 		return x;
 	}
+
+	void DuckService::playDogCatchBirdAnimation(int duck_shot)
+	{
+		for (int i = duck_shot; i > 0; i--)
+		{
+			if (i >= 3)
+			{
+				ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(sf::Vector2f(880, 825), Animation::AnimationType::DOG_CATCH_ONE, MovementDirection::UPDOWN);
+			}
+			else if (i == 2)
+			{
+				ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(sf::Vector2f(880, 825), Animation::AnimationType::DOG_CATCH_ONE, MovementDirection::UPDOWN);
+			}
+			else if (i == 1)
+			{
+				ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(sf::Vector2f(880, 825), Animation::AnimationType::DOG_CATCH_ONE, MovementDirection::UPDOWN);
+			}
+		}
+	}
+
 
 }

@@ -49,8 +49,9 @@ namespace UI
             player_ammo_image->initialize(Config::ammo_texture_path, ammo_sprite_width, ammo_sprite_height, sf::Vector2f(0, 0));
             powerup_aimed_shot_image->initialize(Config::crosshair_texture_path, ammo_sprite_width, ammo_sprite_height, sf::Vector2f(0, 0));
 
-            dog_image->initialize(Config::dog_texture_path, 632, 824, sf::Vector2f(level_text_x_position, level_text_y_position));
-            dog_image->setTextureRect(sf::IntRect(0, 525, 58, 103));
+            dog_image->initialize(Config::dog_texture_path, 1264.f, 1648.f, sf::Vector2f(level_text_x_position, level_text_y_position));
+            dog_image->setTextureRect(sf::IntRect(0, 812, 150.f, 250.f));
+
         }
 
         void GameplayUIController::initializeForegroundImage()
@@ -108,7 +109,7 @@ namespace UI
             }
        
             
-           // dog_image->render();
+           //dog_image->render();
         }
 
         void GameplayUIController::show()
