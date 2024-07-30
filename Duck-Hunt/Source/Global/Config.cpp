@@ -12,6 +12,8 @@ namespace Global
 
 	const sf::String Config::quit_button_texture_path = "Assets/Textures/quit_button.png";
 
+	const sf::String Config::menu_button_texture_path = "Assets/Textures/menu_button.png";
+
 	const sf::String Config::background_blue_texture_path = "Assets/Textures/background_blue_texture.png";
 
 	const sf::String Config::background_white_texture_path = "Assets/Textures/background_white_texture.png";
@@ -33,6 +35,8 @@ namespace Global
 	const sf::String Config::ammo_texture_path = "Assets/Textures/ammo_texture.png";
 
 	const sf::String Config::winner_texture_path = "Assets/Textures/winner_texture.png";
+
+	const sf::String Config::instructions_image_texture_path = "Assets/Textures/instructions_banner_texture.png";
 
 
 	const sf::String Config::Rajdhani_font_path = "Assets/Fonts/Rajdhani.ttf";

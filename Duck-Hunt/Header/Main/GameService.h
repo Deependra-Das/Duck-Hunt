@@ -11,6 +11,7 @@ namespace Main
 		GAMEPLAY,
 		GAMEOVER,
 		GAMEWINNER,
+		INSTRUCTIONS
 	};
 
 	class GameService

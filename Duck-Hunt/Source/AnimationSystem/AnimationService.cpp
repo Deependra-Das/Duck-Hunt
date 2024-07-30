@@ -71,12 +71,12 @@ namespace Animation
 		}
 		case Animation::AnimationType::DOG_CATCH_ONE:
 		{
-			const AnimationSystemConfig dock_catch_one_animation_config(Global::Config::dog_texture_path, 1264.f, 1648.f, 150.f, 216.f, 1, 0.2f, 5.0f, 4, 0);
+			const AnimationSystemConfig dock_catch_one_animation_config(Global::Config::dog_texture_path, 1264.f, 1648.f, 150.f, 208.f, 1, 0.2f, 5.0f, 4, 0);
 			return dock_catch_one_animation_config;
 		}
 		case Animation::AnimationType::DOG_CATCH_TWO:
 		{
-			const AnimationSystemConfig dock_catch_two_animation_config(Global::Config::dog_texture_path, 1264.f, 1648.f, 185.f, 350.f, 1, 0.2f, 5.0f, 4, 1);
+			const AnimationSystemConfig dock_catch_two_animation_config(Global::Config::dog_texture_path, 1264.f, 1648.f, 185.f, 208.f, 1, 0.2f, 5.0f, 4, 1);
 			return dock_catch_two_animation_config;
 		}
 		case Animation::AnimationType::DOG_CATCH_THREE:

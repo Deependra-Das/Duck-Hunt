@@ -88,7 +88,7 @@ namespace UI
 
         void MainMenuUIController::instructionsButtonCallback()
         {
-         //   GameService::setGameState(GameState::INSTRUCTIONS);
+            GameService::setGameState(GameState::INSTRUCTIONS);
         }
 
         void MainMenuUIController::quitButtonCallback()

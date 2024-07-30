@@ -5,6 +5,7 @@
 #include "../../Header/UI/GameplayUI/GameplayUIController.h"
 #include "../../Header/UI/GameOverUI/GameOverUIController.h"
 #include "../../Header/UI/GameWinnerUI/GameWinnerUIController.h"
+#include "../../Header/UI/InstructionsUI/InstructionsUIController.h"
 
 namespace UI
 {
@@ -15,6 +16,7 @@ namespace UI
 		GameplayUI::GameplayUIController* gameplay_ui_controller;
 		GameOverUI::GameOverUIController* game_over_ui_controller;
 		GameWinnerUI::GameWinnerUIController* game_winner_ui_controller;
+		InstructionsUI::InstructionsUIController* instructions_ui_controller;
 
 		void createControllers();
 		void initializeControllers();

@@ -156,6 +156,7 @@
     <ClCompile Include="Source\UI\GameOverUI\GameOverUIController.cpp" />
     <ClCompile Include="Source\UI\GameplayUI\GameplayUIController.cpp" />
     <ClCompile Include="Source\UI\GameWinnerUI\GameWinnerUIController.cpp" />
+    <ClCompile Include="Source\UI\InstructionsUI\InstructionsUIController.cpp" />
     <ClCompile Include="Source\UI\MainMenuUI\MainMenuUIController.cpp" />
     <ClCompile Include="Source\UI\UIElement\AnimatedImageView.cpp" />
     <ClCompile Include="Source\UI\UIElement\ButtonView.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="Header\UI\GameOverUI\GameOverUIController.h" />
     <ClInclude Include="Header\UI\GameplayUI\GameplayUIController.h" />
     <ClInclude Include="Header\UI\GameWinnerUI\GameWinnerUIController.h" />
+    <ClInclude Include="Header\UI\InstructionsUI\InstructionsUIController.h" />
     <ClInclude Include="Header\UI\Interface\IUIController.h" />
     <ClInclude Include="Header\UI\MainMenuUI\MainMenuUIController.h" />
     <ClInclude Include="Header\UI\UIElement\AnimatedImageView.h" />

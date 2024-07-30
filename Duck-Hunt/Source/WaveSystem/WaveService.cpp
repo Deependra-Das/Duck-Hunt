@@ -108,7 +108,7 @@ namespace Wave
 			{
 				current_wave_status = WaveStatus::LOST;
 				ServiceLocator::getInstance()->getGameplayService()->changeBackgroundColor(Config::background_red_texture_path);
-				ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(sf::Vector2f(880,825), Animation::AnimationType::DOG_MOCKING, MovementDirection::UPDOWN);
+				ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(sf::Vector2f(880,830), Animation::AnimationType::DOG_MOCKING, MovementDirection::UPDOWN);
 				ServiceLocator::getInstance()->getPlayerService()->decreasePlayerHealth();
 				ducks_shot_in_current_wave = 0;
 			}
